@@ -7,14 +7,6 @@ import { LoginComponent } from './login/login.component';
 
 
 const appRoutes: Routes = [
-    {
-        path: '', 
-        component: PagesComponent,
-        children: [
-            {path: 'main', component: MainComponent},
-            {path: '', redirectTo: '/main', pathMatch: 'full'},
-        ]
-    },
     {path: 'login', component: LoginComponent},
     {path: '**', redirectTo: '/main', pathMatch: 'full'},
 ];
