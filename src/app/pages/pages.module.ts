@@ -3,6 +3,7 @@ import { MainComponent } from './main/main.component';
 import { PagesComponent } from './pages.component';
 import { SharedModule } from '../shared/shared.module';
 import { PAGES_ROUTES } from './pages.routes';
+import { AdministracionModule } from './administracion/administracion.module';
 
 
 
@@ -12,6 +13,7 @@ import { PAGES_ROUTES } from './pages.routes';
         MainComponent
     ],
     imports: [
+        AdministracionModule,
         SharedModule,
         PAGES_ROUTES
     ],

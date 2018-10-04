@@ -1,48 +1,53 @@
 <div class="wrapper wrapper-full-page">
   
-  <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('../assets/img/login.jpg'); background-size: cover; background-position: top center;">
+    <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('../assets/img/login.jpg'); background-size: cover; background-position: top center;">
       <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
-      <div class="container">
-          <div class="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
-
-              <div class="card card-login card-hidden">
-                  <div class="card-header card-header-primary text-center">
-                      <h4 class="card-title">Login</h4>
-                      <div class="social-line">
-                          <a class="btn btn-just-icon btn-link btn-white">
-                              <i class="fa fa-google-plus"></i>
-                          </a>
-                      </div>
-                  </div>
-                  <div class="card-body ">
-                      <p class="card-description text-center">O se clásico</p>
-                      <span class="bmd-form-group">
-                              <div class="input-group">
-                                  <div class="input-group-prepend">
-                                      <span class="input-group-text">
-                                          <i class="material-icons">face</i>
-                                      </span>
-                  </div>
-                  <input type="text" class="form-control" placeholder="Usuario" id="login_usuario">
-              </div>
-              </span>
-              <span class="bmd-form-group"></span>
-              <span class="bmd-form-group">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <i class="material-icons">lock_outline</i>
-                </span>
-          </div>
-          <input type="password" class="form-control" placeholder="Contraseña" id="login_password">
-      </div>
-      </span>
-  </div>
-  <div class="card-footer justify-content-center">
-      <button id="btn_login" class="btn btn-primary btn-link btn-lg">
-          <i class="fa fa-spinner fa-pulse fa-3x fa-fw cargando"></i>
-          <span class="sr-only cargando">Loading...</span> Iniciar Sesión
-      </button>
-  </div>
-
+        <div class="container">
+            <div class="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
+                <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+                    <div class="card card-login card-hidden">
+                        <div class="card-header card-header-primary text-center">
+                            <h4 class="card-title">Login</h4>
+                            <div class="social-line">
+                                <a class="btn btn-just-icon btn-link btn-white">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <p class="card-description text-center">O se clásico</p>
+                            <span class="bmd-form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">face</i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Usuario" required 
+                                            [(ngModel)]="myLogin.username" name="username">
+                                </div>
+                            </span>
+                            <span class="bmd-form-group"></span>
+                            <span class="bmd-form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                        <i class="material-icons">lock_outline</i>
+                                        </span>
+                                    </div>
+                                    <input type="password" class="form-control" placeholder="Contraseña" id="login_password" required
+                                            [(ngModel)]="myLogin.password" name="password">
+                                </div>
+                            </span>
+                        </div>
+                        <div class="card-footer justify-content-center">
+                            <button type="submit" class="btn btn-primary btn-link btn-lg" [disabled]="!loginForm.form.valid || submitted">
+                                <i class="fa fa-spinner fa-pulse fa-3x fa-fw cargando" [hidden]="!submitted"></i>Iniciar Sesión
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

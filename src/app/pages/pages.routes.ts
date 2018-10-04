@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { MainComponent } from './main/main.component';
+import { AdminComponent } from './administracion/admin.component';
 
 const pagesRoutes: Routes = [
     {
