@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-declare var $:any;
+declare var $: any;
 
 @Component({
   selector: 'app-main',
@@ -14,20 +14,21 @@ export class MainComponent implements OnInit {
     this.inicializar_calendario();
   }
 
-  inicializar_calendario(){
+  inicializar_calendario() {
     const today = new Date();
     const y = today.getFullYear();
     const m = today.getMonth();
     const d = today.getDate();
-    const calendar = $('#fullCalendar')
+    const calendar = $('#fullCalendar');
     calendar.fullCalendar({
       viewRender: function(view, element) {
-          if (view.name != 'month') {
+          if (view.name !== 'month') {
               $(element).find('.fc-scroller').perfectScrollbar();
           }
       },
       locale: 'es',
-      monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+      monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio',
+                  'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
       monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
       dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
       dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
@@ -50,7 +51,7 @@ export class MainComponent implements OnInit {
               titleFormat: 'MMMM YYYY'
           },
           week: {
-              titleFormat: " MMMM D YYYY"
+              titleFormat: ' MMMM D YYYY'
           },
           day: {
               titleFormat: 'D MMM, YYYY'
