@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-md-8 col-sm-12">
+        <div class="card ">
+            <div class="card-header card-header-primary card-header-text">
+                <div class="card-text">
+                    <h4 class="card-title">Formulario de Clientes</h4>
+                </div>
+            </div>
+            <form (ngSubmit)="onSubmit(empresasForm)" #empresasForm="ngForm">
+                <div class="card-body ">
+
+                    <div class="row">
+                        <label class="col-sm-3 col-form-label">Nombre de la Empresa</label>
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="empresa.nombre" name="nombre" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 col-form-label">Código de la Empresa</label>
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="empresa.codigo" name="codigo" class="form-control" required>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row" style="margin-top:10px;">
+                        <label class="col-sm-3 col-form-label">Tipo de Empresa</label>
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <select style="width:100%;" [(ngModel)]="empresa.tipo" name="tipo" id="tipo_empresa">
+                                  <option *ngFor="let tipo of tipos" [value]="tipo.valor"> {{ tipo.nombre }} </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row text-right" style="margin-left:30px; margin-bottom: 10px;">
+                        <button type="button" (click)="router.navigate(['/admin/empresas'])" class="btn btn-primary" style="color:white; margin-right:15px">Volver</button>
+                        <button [disabled]="!empresasForm.form.valid" class="btn btn-primary">
+                              <i class="fa fa-spinner fa-pulse fa-3x fa-fw cargando"></i>
+                          Guardar
+                      </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

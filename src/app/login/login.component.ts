@@ -10,8 +10,8 @@ declare var $: any;
 })
 export class LoginComponent implements OnInit {
 
-  myLogin = new Login('pos000','Martin1994');
-  submitted: boolean = false;
+  myLogin = new Login('pos000', 'Martin1994');
+  submitted = false;
 
   constructor() { }
 
@@ -19,12 +19,12 @@ export class LoginComponent implements OnInit {
     this.checkFullPageBackgroundImage();
   }
 
-  checkFullPageBackgroundImage(){
-    let page = $('.full-page');
-    let image_src = page.data('image');
+  checkFullPageBackgroundImage() {
+    const page = $('.full-page');
+    const image_src = page.data('image');
 
     if (image_src !== undefined) {
-        let   image_container = '<div class="full-page-background" style="background-image: url(' + image_src + ') "/>'
+        const image_container = '<div class="full-page-background" style="background-image: url(' + image_src + ') "/>';
         page.append(image_container);
     }
 
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  onSubmit(e){
+  onSubmit(e) {
     console.log(e);
     this.submitted = true;
     setTimeout(() => {

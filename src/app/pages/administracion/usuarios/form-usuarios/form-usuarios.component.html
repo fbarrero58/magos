@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card ">
+            <div class="card-header card-header-primary card-header-text">
+                <div class="card-text">
+                    <h4 class="card-title">Formulario de Usuarios</h4>
+                </div>
+            </div>
+            <form (ngSubmit)="onSubmit(usuarioForm)" #usuarioForm="ngForm">
+                <div class="card-body">
+                    <hr>
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label"> Nombres* </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="usuario.nombres" name="nombres" class="form-control" required>
+                                <span class="bmd-help"> Ambos Nombres </span>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> Apellidos* </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="usuario.apellidos" name="apellidos" class="form-control" required>
+                                <span class="bmd-help"> Ambos Apellidos </span>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> Correo* </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="email" [(ngModel)]="usuario.correo" name="correo" class="form-control" required>
+                                <span class="bmd-help"> ejemplo@valormaximo.com </span>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> Cargo </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="usuario.cargo" name="cargo" class="form-control" required>
+                                <span class="bmd-help"> Como aparece en el contrato </span>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> Fecha Vinculación </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="usuario.fecha_vinculacion" name="fecha_vinculacion" class="form-control datepicker" id="fecha_nuevo_usuario">
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> Rol del Sistema </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select style="width:100%" [(ngModel)]="usuario.rol" name="rol" id="rol_nuevo_usuario">
+                                    <option *ngFor="let rol of roles" [value]="rol.valor">{{ rol.nombre }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> Estado del Usuario </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select style="width:100%">
+                                <option value="T">Activo</option>
+                                <option value="F">Inactivo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="button" (click)="router.navigate(['/admin/usuarios'])" class="btn btn-primary ml-auto" style="margin-right:15px">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="!usuarioForm.form.valid || cargando">
+                        <i [hidden]="!cargando" class="fa fa-spinner fa-pulse fa-3x fa-fw cargando"></i>
+                        Guardar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
