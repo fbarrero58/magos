@@ -8,6 +8,7 @@ import { AlianzasComponent } from './alianzas/alianzas.component';
 import { EmpresasComponent } from './empresas/empresas.component';
 import { ProyectosComponent } from './proyectos/proyectos.component';
 import { FormEmpresasComponent } from './empresas/form-empresas/form-empresas.component';
+import { FormProyectosComponent } from './proyectos/form-proyectos/form-proyectos.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { FormEmpresasComponent } from './empresas/form-empresas/form-empresas.co
         AlianzasComponent,
         EmpresasComponent,
         ProyectosComponent,
-        FormEmpresasComponent
+        FormEmpresasComponent,
+        FormProyectosComponent
     ],
     imports: [
         CommonModule,

@@ -2,8 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { UsuarioService } from './services/usuario.service';
-import { CalendarioService } from './services/calendario.service';
+
 // Rutas
 import { APP_ROUTES } from './app.routes';
 
@@ -13,6 +12,8 @@ import { PagesModule } from './pages/pages.module';
 // Componentes
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+
+import { ServiceModule } from './services/services.module';
 
 
 
@@ -25,9 +26,10 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     PagesModule,
     FormsModule,
+    ServiceModule,
     APP_ROUTES
   ],
-  providers: [UsuarioService, CalendarioService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

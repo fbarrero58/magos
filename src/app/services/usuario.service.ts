@@ -1,4 +1,7 @@
+import { LoginService } from './login/login.service';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { URL_SERVICIOS } from '../constantes/config';
 import { Usuario } from '../classes/usuario';
 
 @Injectable({
@@ -8,18 +11,15 @@ export class UsuarioService {
 
   usuarios: Usuario[] = [];
 
-  constructor() {
-    let usuario = new Usuario('1', 'Andrés Felipe', 'Barrero Chacón', 'felipe.barrero@valormaximo.com',
-                              'Consultor SAP Ariba', '16/2/2018', '1');
-    this.usuarios.push(usuario);
-    usuario = new Usuario('2', 'Carlos Arturo', 'Forero Chacón', 'carlos.forero@valormaximo.com',
-                          'Asistente de Gerencia', '16/2/2018', '1');
-    this.usuarios.push(usuario);
-  }
+  constructor(
+    public http: HttpClient,
+    public _ls: LoginService
+  ) {}
 
 
   traer_usuarios() {
-    return this.usuarios;
+    const url = URL_SERVICIOS + 'usuarios?token=' + this._ls.token;
+    return this.http.get(url);
   }
 
 }

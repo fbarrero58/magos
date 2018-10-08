@@ -3,3 +3,7 @@
 .sidebar-activo {
     background-color: #3f51b5;
 }
+
+.ocultar {
+    display: none;
+}

@@ -8,8 +8,8 @@ export class Usuario {
     fecha_vinculacion: string;
     rol: string;
 
-    constructor( id: string, nombres: string, apellidos: string, correo: string, cargo: string,
-                fecha_vinculacion: string, rol: string) {
+    constructor( id: string, nombres: string, apellidos: string, cargo: string, rol: string,
+                fecha_vinculacion?: string, correo?: string) {
 
         this.nombres = nombres;
         this.apellidos = apellidos;

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import { PagesComponent } from './pages.component';
 import { SharedModule } from '../shared/shared.module';
@@ -19,6 +20,7 @@ import { AdminModule } from './administracion/admin.module';
     ],
     imports: [
         CommonModule,
+        FormsModule,
         SharedModule,
         AdminModule,
         PAGES_ROUTES

@@ -22,18 +22,18 @@ export class CalendarioService {
 
   constructor() { }
 
-  format_to_yyyy_mm_dd(arreglo){
-    return arreglo[3]+'-'+arreglo[1]+'-'+arreglo[2];
+  format_to_yyyy_mm_dd(arreglo) {
+    return arreglo[3] + '-' + arreglo[1] + '-' + arreglo[2];
   }
 
-  sumarDias(fecha, dias){
+  sumarDias(fecha, dias) {
     fecha.setDate(fecha.getDate() + dias);
     return fecha;
   }
 
-  format_to_nice(fecha){
-    let aux = fecha.split("-");
+  format_to_nice(fecha) {
+    const aux = fecha.split('-');
     return `${aux[2]} de ${this.fechas[aux[1]]} del ${aux[0]}`;
   }
-    
+
 }
