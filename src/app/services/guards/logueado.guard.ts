@@ -5,14 +5,14 @@ import { LoginService } from '../login/login.service';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginGuardGuard implements CanActivate {
+export class LogueadoGuard implements CanActivate {
 
-  constructor( public router: Router, public _ls: LoginService ) {}
+  constructor(public _ls: LoginService, public router: Router) {}
 
   canActivate() {
 
-    if (!this._ls.esta_logueado() ) {
-      this.router.navigate(['/login']);
+    if (this._ls.esta_logueado() ) {
+      this.router.navigate(['/main']);
     }
 
     return true;

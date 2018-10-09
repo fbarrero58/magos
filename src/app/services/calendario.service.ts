@@ -36,4 +36,14 @@ export class CalendarioService {
     return `${aux[2]} de ${this.fechas[aux[1]]} del ${aux[0]}`;
   }
 
+  from_calendar_to_DB(fecha: string) {
+    const aux = fecha.split('/');
+    return `${aux[2]}-${aux[1]}-${aux[0]}`;
+  }
+
+  from_DB_to_calendar(fecha: string) {
+    const aux = fecha.split('-');
+    return `${aux[2]}/${aux[1]}/${aux[0]}`;
+  }
+
 }

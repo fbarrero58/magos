@@ -7,10 +7,8 @@ import { CalendarioService } from './calendario.service';
 import { UsuarioService } from './usuario.service';
 import { LoginGuardGuard } from './guards/login-guard.guard';
 import { LoginService } from './login/login.service';
-
-
-
-
+import { LogueadoGuard } from './guards/logueado.guard';
+import { VmcaService } from './vmca/vmca.service';
 
 @NgModule({
     declarations: [],
@@ -21,7 +19,9 @@ import { LoginService } from './login/login.service';
     providers: [
         CalendarioService,
         UsuarioService,
+        VmcaService,
         LoginGuardGuard,
+        LogueadoGuard,
         LoginService
     ]
 })

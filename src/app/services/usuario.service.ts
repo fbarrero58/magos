@@ -1,8 +1,14 @@
-import { LoginService } from './login/login.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
+// Servicios
 import { URL_SERVICIOS } from '../constantes/config';
+import { LoginService } from './login/login.service';
+import { CalendarioService } from './calendario.service';
+
+// Clases
 import { Usuario } from '../classes/usuario';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +19,31 @@ export class UsuarioService {
 
   constructor(
     public http: HttpClient,
-    public _ls: LoginService
+    public _ls: LoginService,
+    public _cs: CalendarioService
   ) {}
 
 
   traer_usuarios() {
     const url = URL_SERVICIOS + 'usuarios?token=' + this._ls.token;
     return this.http.get(url);
+  }
+
+  traer_usuario(id_usuario) {
+    const url = `${URL_SERVICIOS}usuarios/${id_usuario}?token=${localStorage.getItem('token')}`;
+    return this.http.get(url);
+  }
+
+  crear_usuario(usuario: Usuario) {
+    usuario.fecha_vinculacion = this._cs.from_calendar_to_DB(usuario.fecha_vinculacion);
+    const url = `${URL_SERVICIOS}usuarios?token=${localStorage.getItem('token')}`;
+    return this.http.post(url, usuario);
+  }
+
+  modificar_usuario(usuario: Usuario) {
+    usuario.fecha_vinculacion = this._cs.from_calendar_to_DB(usuario.fecha_vinculacion);
+    const url = `${URL_SERVICIOS}usuarios/${usuario.id}?token=${localStorage.getItem('token')}`;
+    return this.http.put(url, usuario);
   }
 
 }

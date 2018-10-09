@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" style="padding-top: 20px;">
     <div class="col-md-12">
         <div class="card ">
             <div class="card-header card-header-primary card-header-text">
@@ -48,23 +48,22 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <select style="width:100%" [(ngModel)]="usuario.rol" name="rol" id="rol_nuevo_usuario">
-                                    <option *ngFor="let rol of roles" [value]="rol.valor">{{ rol.nombre }}</option>
+                                    <option *ngFor="let rol of roles" [value]="rol.id">{{ rol.nombre }}</option>
                                 </select>
                             </div>
                         </div>
-                        <label class="col-sm-2 col-form-label"> Estado del Usuario </label>
-                        <div class="col-sm-4">
+                        <label [hidden]="tipo_form === 'nuevo'" class="col-sm-2 col-form-label"> Estado del Usuario </label>
+                        <div [hidden]="tipo_form === 'nuevo'" class="col-sm-4">
                             <div class="form-group">
-                                <select style="width:100%">
-                                <option value="T">Activo</option>
-                                <option value="F">Inactivo</option>
+                                <select style="width:100%" [(ngModel)]="usuario.estado" name="estado" id="estado_nuevo_usuario">
+                                    <option *ngFor="let estado of _vs.estados_activos" [value]="estado.id">{{ estado.nombre }}</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button type="button" (click)="router.navigate(['/admin/usuarios'])" class="btn btn-primary ml-auto" style="margin-right:15px">Cancelar</button>
+                    <button type="button" (click)="router.navigate(['/admin/usuarios'])" class="btn btn-primary ml-auto" style="margin-right:15px">Volver</button>
                     <button type="submit" class="btn btn-primary" [disabled]="!usuarioForm.form.valid || cargando">
                         <i [hidden]="!cargando" class="fa fa-spinner fa-pulse fa-3x fa-fw cargando"></i>
                         Guardar

@@ -33,4 +33,17 @@ export class LoginService {
     this.usuario = JSON.parse(localStorage.getItem('usuario'));
   }
 
+  cerrar_sesion() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('id_usuario');
+    localStorage.removeItem('usuario');
+    this.router.navigate(['/login']);
+  }
+
+  esta_logueado() {
+    this.cargar_storage();
+    if (!this.token || !this.id_usuario || !this.usuario) {return false; }
+    return true;
+  }
+
 }
