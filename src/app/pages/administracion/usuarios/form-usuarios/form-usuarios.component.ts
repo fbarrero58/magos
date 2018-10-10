@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Usuario } from '../../../../classes/usuario';
+
+// Servicios
 import { VmcaService } from '../../../../services/vmca/vmca.service';
-import { Vmca } from '../../../../classes/vmca';
 import { UsuarioService } from '../../../../services/usuario.service';
+
+// Clases
+import { Usuario } from '../../../../classes/usuario';
+import { Vmca } from '../../../../classes/vmca';
 
 declare var md, $: any;
 declare function swal(string): any;

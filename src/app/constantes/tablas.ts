@@ -33,7 +33,7 @@ export const ADMIN_EMPRESAS = [
 
 export const ADMIN_ALIANZAS = [
     { title: 'Alianza' },
-    { title: 'Condición de Pago' }
+    { title: 'Condición' }
 ];
 
 export const ADMIN_PROYECTOS = [

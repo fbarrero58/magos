@@ -9,12 +9,37 @@ import { URL_SERVICIOS } from '../../constantes/config';
 export class VmcaService {
 
   roles: Vmca[] = [];
+  tipos_empresa: Vmca[] = [];
+  tipos_servicio: Vmca[] = [];
+  lineas_servicio: Vmca[] = [];
+  estados_comerciales: Vmca[] = [];
   public estados_activos: Vmca[] = [{id: 'T', nombre: 'Activo'}, {id: 'F', nombre: 'Inactivo'}];
+  public estados_si_no: Vmca[] = [{id: 'T', nombre: 'Si'}, {id: 'F', nombre: 'No'}];
 
   constructor( public http: HttpClient ) { }
 
   traer_roles() {
     const url = `${URL_SERVICIOS}vmca/roles/?token=${localStorage.getItem('token')}`;
+    return this.http.get(url);
+  }
+
+  traer_tipos_empresa() {
+    const url = `${URL_SERVICIOS}vmca/tipoempresa/?token=${localStorage.getItem('token')}`;
+    return this.http.get(url);
+  }
+
+  traer_tipos_servicio() {
+    const url = `${URL_SERVICIOS}vmca/tiposervicio/?token=${localStorage.getItem('token')}`;
+    return this.http.get(url);
+  }
+
+  traer_lineas_servicio() {
+    const url = `${URL_SERVICIOS}vmca/lineaservicio/?token=${localStorage.getItem('token')}`;
+    return this.http.get(url);
+  }
+
+  traer_estados_comerciales() {
+    const url = `${URL_SERVICIOS}vmca/estadoscomerciales/?token=${localStorage.getItem('token')}`;
     return this.http.get(url);
   }
 

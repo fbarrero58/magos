@@ -31,7 +31,7 @@
                         <div class="col-sm-8">
                             <div class="form-group">
                                 <select style="width:100%;" [(ngModel)]="empresa.tipo" name="tipo" id="tipo_empresa">
-                                  <option *ngFor="let tipo of tipos" [value]="tipo.valor"> {{ tipo.nombre }} </option>
+                                  <option *ngFor="let tipo of _vs.tipos_empresa" [value]="tipo.id"> {{ tipo.nombre }} </option>
                                 </select>
                             </div>
                         </div>
@@ -39,10 +39,10 @@
                     <hr>
                     <div class="row text-right" style="margin-left:30px; margin-bottom: 10px;">
                         <button type="button" (click)="router.navigate(['/admin/empresas'])" class="btn btn-primary" style="color:white; margin-right:15px">Volver</button>
-                        <button [disabled]="!empresasForm.form.valid" class="btn btn-primary">
-                              <i class="fa fa-spinner fa-pulse fa-3x fa-fw cargando"></i>
+                        <button [disabled]="!empresasForm.form.valid || cargando" class="btn btn-primary">
+                              <i [hidden]="!cargando" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
                           Guardar
-                      </button>
+                        </button>
                     </div>
                 </div>
             </form>

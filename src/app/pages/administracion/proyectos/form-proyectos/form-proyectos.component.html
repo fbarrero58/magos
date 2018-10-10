@@ -3,73 +3,111 @@
         <div class="card ">
             <div class="card-header card-header-primary card-header-text">
                 <div class="card-text">
-                    <h4 class="card-title">Formulario de Usuarios</h4>
+                    <h4 class="card-title">Formulario de Proyectos</h4>
                 </div>
             </div>
             <form (ngSubmit)="onSubmit(proyectosForm)" #proyectosForm="ngForm">
                 <div class="card-body">
                     <hr>
                     <div class="row">
-                        <label class="col-sm-2 col-form-label"> Nombre del proyecto </label>
+                        <label class="col-sm-2 col-form-label"> Nombre del proyecto* </label>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" [(ngModel)]="proyecto.nombre" name="nombre" class="form-control" required>
                             </div>
                         </div>
-                        <label class="col-sm-2 col-form-label"> Código del proyecto </label>
+                        <label class="col-sm-2 col-form-label"> Código del proyecto* </label>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" [(ngModel)]="proyecto.codigo" name="codigo" class="form-control" required>
                             </div>
                         </div>
-                        <label class="col-sm-2 col-form-label"> Fecha de Inicio </label>
+                        <label class="col-sm-2 col-form-label"> Fecha de Inicio* </label>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" [(ngModel)]="proyecto.inicio" name="inicio" class="form-control datepicker" required>
+                                <input type="text" [(ngModel)]="proyecto.inicio" name="inicio" class="form-control datepicker" id="form_inicio">
                             </div>
                         </div>
-                        <label class="col-sm-2 col-form-label"> Fecha de Finalización </label>
+                        <label class="col-sm-2 col-form-label"> Fecha de Finalización* </label>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" [(ngModel)]="proyecto.fin" name="fin" class="form-control datepicker" required>
+                                <input type="text" [(ngModel)]="proyecto.fin" name="fin" class="form-control datepicker" id="form_fin">
                             </div>
                         </div>
-                        <label class="col-sm-2 col-form-label"> Cliente </label>
+                        <label class="col-sm-2 col-form-label"> Horas destinadas </label>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <select style="width:100%" [(ngModel)]="proyecto.cliente" name="cliente">
-                                    <option *ngFor="let cliente of clientes" [value]="cliente.valor">{{ cliente.nombre }}</option>
+                                <input type="number" [(ngModel)]="proyecto.horas" name="horas" class="form-control" id="form_horas">
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> Cliente* </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select style="width:100%" [(ngModel)]="proyecto.empresa" name="empresa" id="form_cliente">
+                                    <option *ngFor="let empresa of _es.empresas" [value]="empresa.id">{{ empresa.nombre }}</option>
                                 </select>
                             </div>
                         </div>
-                        <label class="col-sm-2 col-form-label"> Tipo de Servicio </label>
+                        <label class="col-sm-2 col-form-label"> Tipo de Servicio* </label>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <select style="width:100%" [(ngModel)]="proyecto.tipo" name="tipo">
-                                    <option *ngFor="let tipos of tipos" [value]="tipos.valor">{{ tipos.nombre }}</option>
+                                <select style="width:100%" [(ngModel)]="proyecto.tipo" name="tipo" id="form_tipo">
+                                    <option *ngFor="let tipo of tipos" [value]="tipo.id">{{ tipo.nombre }}</option>
                                 </select>
                             </div>
                         </div>
-                        <label class="col-sm-2 col-form-label"> Linea de Servicio </label>
+                        <label class="col-sm-2 col-form-label"> Linea de Servicio* </label>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <select style="width:100%" [(ngModel)]="proyecto.linea" name="linea">
-                                    <option *ngFor="let lineas of lineas" [value]="lineas.valor">{{ lineas.nombre }}</option>
+                                <select style="width:100%" [(ngModel)]="proyecto.linea" name="linea" id="form_linea">
+                                    <option *ngFor="let lineas of lineas" [value]="lineas.id">{{ lineas.nombre }}</option>
                                 </select>
                             </div>
                         </div>
-                        <label class="col-sm-2 col-form-label"> Estado del proyecto </label>
+                        <label class="col-sm-2 col-form-label"> Estado del proyecto* </label>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <select style="width:100%" [(ngModel)]="proyecto.estado" name="estado">
-                                    <option *ngFor="let estados of estados" [value]="estados.valor">{{ estados.nombre }}</option>
+                                <select style="width:100%" [(ngModel)]="proyecto.estado" name="estado" id="form_estado">
+                                    <option *ngFor="let estados of estados" [value]="estados.id">{{ estados.nombre }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> Alianza* </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select style="width:100%" [(ngModel)]="proyecto.alianza" name="alianza" id="form_alianza">
+                                    <option *ngFor="let alianza of alianzas" [value]="alianza.id">{{ alianza.nombre }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> Visibilidad* </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select style="width:100%" [(ngModel)]="proyecto.habilitado" name="habilitado" id="form_habilitado">
+                                    <option *ngFor="let estados of _vs.estados_activos" [value]="estados.id">{{ estados.nombre }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> ¿Tiene Ticket?* </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select style="width:100%" [(ngModel)]="proyecto.ticket" name="ticket" id="form_ticket">
+                                    <option *ngFor="let estados of _vs.estados_si_no" [value]="estados.id">{{ estados.nombre }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> ¿Es facturable?* </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select style="width:100%" [(ngModel)]="proyecto.facturable" name="facturable" id="form_facturable">
+                                    <option *ngFor="let estados of _vs.estados_si_no" [value]="estados.id">{{ estados.nombre }}</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button type="button" (click)="router.navigate(['/admin/proyectos'])" class="btn btn-primary ml-auto" style="margin-right:15px">Cancelar</button>
+                    <button type="button" (click)="router.navigate(['/admin/proyectos'])" class="btn btn-primary ml-auto" style="margin-right:15px">Volver</button>
                     <button type="submit" class="btn btn-primary" [disabled]="!proyectosForm.form.valid || cargando">
                         <i [hidden]="!cargando" class="fa fa-spinner fa-pulse fa-3x fa-fw cargando"></i>
                         Guardar

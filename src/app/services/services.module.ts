@@ -9,6 +9,9 @@ import { LoginGuardGuard } from './guards/login-guard.guard';
 import { LoginService } from './login/login.service';
 import { LogueadoGuard } from './guards/logueado.guard';
 import { VmcaService } from './vmca/vmca.service';
+import { EmpresaService } from './empresa/empresa.service';
+import { AlianzaService } from './alianza/alianza.service';
+import { ProyectoService } from './proyecto/proyecto.service';
 
 @NgModule({
     declarations: [],
@@ -22,7 +25,10 @@ import { VmcaService } from './vmca/vmca.service';
         VmcaService,
         LoginGuardGuard,
         LogueadoGuard,
-        LoginService
+        LoginService,
+        EmpresaService,
+        AlianzaService,
+        ProyectoService
     ]
 })
 

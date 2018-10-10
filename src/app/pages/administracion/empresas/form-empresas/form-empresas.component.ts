@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Empresas } from '../../../../classes/empresas';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+
+// Servicios
+import { EmpresaService } from '../../../../services/empresa/empresa.service';
+import { VmcaService } from '../../../../services/vmca/vmca.service';
+
+// Clases
+import { Empresa } from '../../../../classes/empresa';
+
 declare var $: any;
 declare function swal(string): any;
 
@@ -11,13 +18,41 @@ declare function swal(string): any;
 })
 export class FormEmpresasComponent implements OnInit {
 
-  empresa = new Empresas('', '', '');
-  tipos = [{valor: 1, nombre: 'Empresa'}, {valor: 2, nombre: 'Cliente'}];
+  tipo_form = '';
+  id_form = '';
+  empresa = new Empresa('', '', '', '');
+  cargando = false;
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, public _es: EmpresaService, public _vs: VmcaService,
+              public activeRoute: ActivatedRoute) {
+
+      if (this._es.empresas.length === 0) {
+        this.router.navigate(['/admin/empresas']);
+      }
+
+      this.activeRoute.params.subscribe(params => {
+        this.tipo_form = params['tipo'];
+        if (this.tipo_form === 'detalle') {
+          this.id_form = params['id'];
+          this._es.empresas.filter( (e) => {
+            if (e.id === this.id_form) {
+              this.empresa = e;
+            }
+          });
+        }
+      });
+
+    }
 
   ngOnInit() {
+    this.traer_datos();
     $('select').select2();
+  }
+
+  traer_datos() {
+    this._vs.traer_tipos_empresa().subscribe((resp: any) => {
+      this._vs.tipos_empresa = resp.tipos;
+    });
   }
 
   onSubmit(e) {
@@ -29,8 +64,28 @@ export class FormEmpresasComponent implements OnInit {
               text: 'Parece que falta especificar el tipo de Empresa',
             });
     }
+    this.cargando = true;
     this.empresa.tipo = tipo.val();
-    console.log(this.empresa);
+    if (this.tipo_form === 'detalle') {
+      this._es.modificar_empresa(this.empresa).subscribe(resp => {
+        this.respuesta_servicio(resp);
+      });
+    } else {
+      this._es.crear_empresa(this.empresa).subscribe(resp => {
+        this.respuesta_servicio(resp);
+      });
+    }
+  }
+
+  respuesta_servicio(resp) {
+    let tipo = 'success';
+      if (resp.err) {tipo = 'error'; }
+      swal({
+        type: tipo,
+        title: resp.mensaje,
+        showConfirmButton: true
+      });
+      this.cargando = false;
   }
 
 }
