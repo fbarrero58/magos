@@ -16,6 +16,7 @@ import { Usuario } from '../classes/usuario';
 export class UsuarioService {
 
   usuarios: Usuario[] = [];
+  cumpleanos = [];
 
   constructor(
     public http: HttpClient,
@@ -40,10 +41,22 @@ export class UsuarioService {
     return this.http.post(url, usuario);
   }
 
-  modificar_usuario(usuario: Usuario) {
+  modificar_usuario(usuario: Usuario, modo = 'personal') {
+    let url;
+    if (modo === 'personal') {
+      url = `${URL_SERVICIOS}usuarios/${usuario.id}/personal?token=${localStorage.getItem('token')}`;
+      usuario.fecha_nacimiento = this._cs.from_calendar_to_DB(usuario.fecha_nacimiento);
+    } else {
+    url = `${URL_SERVICIOS}usuarios/${usuario.id}?token=${localStorage.getItem('token')}`;
     usuario.fecha_vinculacion = this._cs.from_calendar_to_DB(usuario.fecha_vinculacion);
-    const url = `${URL_SERVICIOS}usuarios/${usuario.id}?token=${localStorage.getItem('token')}`;
+    }
     return this.http.put(url, usuario);
+  }
+
+  cumpleanos_mes() {
+    const mes = new Date().getMonth() + 1;
+    const url = `${URL_SERVICIOS}usuarios/birthdays/${mes}?token=${localStorage.getItem('token')}`;
+    return this.http.get(url);
   }
 
 }

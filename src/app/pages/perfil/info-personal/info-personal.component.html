@@ -1,0 +1,80 @@
+<div class="row" [ngClass]="{'animated fadeIn': !cargando, 'ocultar': cargando}">
+    <div class="col-md-12">
+        <div class="card ">
+            <div class="card-header card-header-primary card-header-text">
+                <div class="card-text">
+                    <h4 class="card-title">Formulario de Usuario</h4>
+                </div>
+            </div>
+            <form (ngSubmit)="onSubmit(infoPersonalForm)" #infoPersonalForm="ngForm">
+                <div class="card-body">
+                    <hr>
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label"> Nombres</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="usuario.nombres" name="nombres" class="form-control" required>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> Apellidos </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="usuario.apellidos" name="codigo" class="form-control" required>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> Fecha de Nacimiento </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="usuario.fecha_nacimiento" name="fecha_nacimiento" class="form-control datepicker" id="form_nacimiento">
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> Correo Personal </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="email" [(ngModel)]="usuario.correo_personal" name="correo_personal" class="form-control">
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> RUT </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="usuario.rut" name="rut" class="form-control">
+                                <span class="bmd-help"> Con punto(.) y guión(-) </span>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> Celular </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="usuario.celular" name="celular" class="form-control">
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> País de Nacimiento </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="usuario.pais_origen" name="nacimiento" class="form-control">
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> País de Residencia </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="usuario.pais_residencia" name="residencia" class="form-control">
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> Dirección de Residencia </label>
+                        <div class="col-sm-10">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="usuario.direccion" name="direccion" class="form-control">
+                                <span class="bmd-help"> Calle Número, dpto - Comuna </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary ml-auto" [disabled]="!infoPersonalForm.form.valid || cargando">
+                        <i [hidden]="!cargando" class="fa fa-spinner fa-pulse fa-3x fa-fw cargando"></i>
+                        Guardar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

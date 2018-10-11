@@ -20,7 +20,7 @@ import { ServiceModule } from './services/services.module';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

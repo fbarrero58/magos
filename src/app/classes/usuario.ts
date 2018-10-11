@@ -9,6 +9,14 @@ export class Usuario {
     rol: string;
     rol_nombre: string;
     estado: string;
+    celular: string;
+    correo_personal: string;
+    direccion: string;
+    fecha_nacimiento: string;
+    pais_origen: string;
+    pais_residencia: string;
+    perfil_profesional: string;
+    rut: string;
 
     constructor( id: string, nombres: string, apellidos: string, cargo: string, rol: string,
                 rol_nombre ?: string, fecha_vinculacion?: string, correo?: string, estado?: string) {

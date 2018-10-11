@@ -12,6 +12,7 @@ import { AlianzasComponent } from './administracion/alianzas/alianzas.component'
 import { FormEmpresasComponent } from './administracion/empresas/form-empresas/form-empresas.component';
 import { FormProyectosComponent } from './administracion/proyectos/form-proyectos/form-proyectos.component';
 import { LoginGuardGuard } from '../services/guards/login-guard.guard';
+import { InfoPersonalComponent } from './perfil/info-personal/info-personal.component';
 
 const pagesRoutes: Routes = [
     {
@@ -21,6 +22,8 @@ const pagesRoutes: Routes = [
         children: [
             {path: 'main', component: MainComponent},
             {path: 'registro-horas', component: RegistroHorasComponent},
+            // Perfil
+            {path: 'pefil/info-personal', component: InfoPersonalComponent},
             // Administración
             {path: 'admin/usuarios', component: UsuariosComponent},
             {path: 'admin/usuarios/form/:tipo', component: FormUsuariosComponent},
