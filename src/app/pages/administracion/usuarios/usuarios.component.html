@@ -1,14 +1,12 @@
-<div [hidden]="!cargando" class="row alert" style="background-color:#FFECB3; border-radius: 25px; font-size: 20px;">
-    <i class="fa fa-spinner fa-pulse fa-3x fa-fw mr-auto ml-auto"></i>
-</div>
+<app-cargando [hidden]="!cargando"></app-cargando>
 
-<div class="row" [ngClass]="{'animated fadeInDown': !cargando, 'ocultar': cargando}">
+<div class="row" [ngClass]="{'animated fadeIn': !cargando, 'ocultar': cargando}">
     <div class="col-md-12 col-sm-12 text-right">
         <button (click)="router.navigate(['/admin/usuarios/form/nuevo'])" class="btn btn-primary">Nuevo Usuario</button>
     </div>
 </div>
 
-<div class="row" [ngClass]="{'animated fadeInDown': !cargando, 'ocultar': cargando}">
+<div class="row" [ngClass]="{'animated fadeIn': !cargando, 'ocultar': cargando}">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-primary card-header-icon">

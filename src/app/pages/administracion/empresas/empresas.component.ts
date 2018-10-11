@@ -17,6 +17,8 @@ declare var $: any;
 })
 export class EmpresasComponent implements OnInit {
 
+  cargando = true;
+
   constructor(public router: Router, public _es: EmpresaService) { }
 
   ngOnInit() {
@@ -58,6 +60,7 @@ export class EmpresasComponent implements OnInit {
     $('#datatables').on('click', '.detalles', (e) => {
       this.router.navigate([`admin/empresas/form/detalle/${e.target.value}`]);
     });
+    this.cargando = false;
   }
 
 

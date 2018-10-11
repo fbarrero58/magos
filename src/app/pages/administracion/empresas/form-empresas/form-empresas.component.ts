@@ -21,7 +21,7 @@ export class FormEmpresasComponent implements OnInit {
   tipo_form = '';
   id_form = '';
   empresa = new Empresa('', '', '', '');
-  cargando = false;
+  cargando = true;
 
   constructor(public router: Router, public _es: EmpresaService, public _vs: VmcaService,
               public activeRoute: ActivatedRoute) {
@@ -52,6 +52,7 @@ export class FormEmpresasComponent implements OnInit {
   traer_datos() {
     this._vs.traer_tipos_empresa().subscribe((resp: any) => {
       this._vs.tipos_empresa = resp.tipos;
+      this.cargando = false;
     });
   }
 

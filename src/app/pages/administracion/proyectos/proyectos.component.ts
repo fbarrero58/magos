@@ -16,6 +16,8 @@ declare var $: any;
 })
 export class ProyectosComponent implements OnInit {
 
+  cargando = true;
+
   constructor(public router: Router, public _ps: ProyectoService, public _cs: CalendarioService) { }
 
   ngOnInit() {
@@ -57,7 +59,8 @@ export class ProyectosComponent implements OnInit {
       responsive: true,
       data: datos,
       columns: ADMIN_PROYECTOS
-  });
+    });
+    this.cargando = false;
   }
 
 }

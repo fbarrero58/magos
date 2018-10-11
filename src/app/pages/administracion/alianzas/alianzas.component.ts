@@ -20,7 +20,7 @@ declare function swal(string): any;
 export class AlianzasComponent implements OnInit {
 
   alianza = new Alianza('', '', '');
-  cargando = false;
+  cargando = true;
 
   constructor(public _al: AlianzaService) { }
 
@@ -55,7 +55,7 @@ export class AlianzasComponent implements OnInit {
       data: datos,
       columns: ADMIN_ALIANZAS
     });
-
+    this.cargando = false;
   }
 
   onSubmit(e) {

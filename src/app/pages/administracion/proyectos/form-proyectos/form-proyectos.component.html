@@ -1,4 +1,6 @@
-<div class="row">
+<app-cargando [hidden]="!cargando"></app-cargando>
+
+<div class="row" [ngClass]="{'animated fadeIn': !cargando, 'ocultar': cargando}">
     <div class="col-md-12">
         <div class="card ">
             <div class="card-header card-header-primary card-header-text">

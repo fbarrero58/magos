@@ -24,7 +24,7 @@ declare function swal(string): any;
 export class FormProyectosComponent implements OnInit {
 
   proyecto = new Proyecto('', '', '', '', '', '', '', '', '');
-  cargando = false;
+  cargando = true;
   empresas = [];
   tipos: Vmca[] = [];
   lineas = [];
@@ -59,7 +59,6 @@ export class FormProyectosComponent implements OnInit {
     this.cargar_datos();
     md.initFormExtendedDatetimepickers();
     $('select').select2();
-    alert('Falta guardar la edición y encadenar las cargas');
   }
 
   cargar_datos() {
@@ -77,7 +76,7 @@ export class FormProyectosComponent implements OnInit {
         this._as.alianzas = resp.alianzas;
         this.alianzas = this._as.alianzas;
       });
-    } else { this.empresas = this._es.empresas; }
+    } else { this.alianzas = this._as.alianzas; }
 
     // Cargar Tipos de servicio
     if (this._vs.tipos_servicio.length === 0) {
@@ -100,8 +99,9 @@ export class FormProyectosComponent implements OnInit {
       this._vs.traer_estados_comerciales().subscribe((resp: any) => {
         this._vs.estados_comerciales = resp.estados;
         this.estados = this._vs.estados_comerciales;
+        this.cargando = false;
       });
-    } else { this.estados = this._vs.estados_comerciales; }
+    } else { this.estados = this._vs.estados_comerciales; this.cargando = false; }
 
   }
 
@@ -144,9 +144,16 @@ export class FormProyectosComponent implements OnInit {
     this.proyecto.ticket = $('#form_ticket').val();
     this.proyecto.facturable = $('#form_facturable').val();
 
-    this._ps.crear_proyecto(this.proyecto).subscribe(resp => {
-      this.respuesta_servicio(resp);
-    });
+    if (this.tipo_form === 'detalle') {
+      this._ps.modificar_proyecto(this.proyecto).subscribe(resp => {
+        this.respuesta_servicio(resp);
+      });
+    } else {
+      this._ps.crear_proyecto(this.proyecto).subscribe(resp => {
+        this.respuesta_servicio(resp);
+      });
+    }
+
   }
 
   respuesta_servicio(resp) {

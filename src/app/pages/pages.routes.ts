@@ -30,6 +30,7 @@ const pagesRoutes: Routes = [
             {path: 'admin/proyectos/form/:tipo', component: FormProyectosComponent},
             {path: 'admin/proyectos/form/:tipo/:id', component: FormProyectosComponent},
             {path: 'admin/empresas', component: EmpresasComponent},
+            {path: 'admin/empresas/form/:tipo', component: FormEmpresasComponent},
             {path: 'admin/empresas/form/:tipo/:id', component: FormEmpresasComponent},
             {path: 'admin/alianzas', component: AlianzasComponent},
             {path: '', redirectTo: '/main', pathMatch: 'full'},

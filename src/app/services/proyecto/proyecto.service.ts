@@ -31,4 +31,11 @@ export class ProyectoService {
     return this.http.post(url, proyecto);
   }
 
+  modificar_proyecto(proyecto: Proyecto) {
+    proyecto.inicio = this._cs.from_calendar_to_DB(proyecto.inicio);
+    proyecto.fin = this._cs.from_calendar_to_DB(proyecto.fin);
+    const url = `${URL_SERVICIOS}proyectos/${proyecto.id}?token=${localStorage.getItem('token')}`;
+    return this.http.put(url, proyecto);
+  }
+
 }

@@ -1,10 +1,12 @@
-<div class="row main_row">
+<app-cargando [hidden]="!cargando"></app-cargando>
+
+<div class="row" [ngClass]="{'animated fadeIn': !cargando, 'ocultar': cargando}">
     <div class="col-md-12 col-sm-12 text-right">
         <button (click)="router.navigate(['admin/empresas/form/nuevo'])" class="btn btn-primary">Nueva Empresa</button>
     </div>
 </div>
 
-<div class="row main_row">
+<div class="row" [ngClass]="{'animated fadeIn': !cargando, 'ocultar': cargando}">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-primary card-header-icon">

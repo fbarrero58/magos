@@ -9,6 +9,7 @@ import { EmpresasComponent } from './empresas/empresas.component';
 import { ProyectosComponent } from './proyectos/proyectos.component';
 import { FormEmpresasComponent } from './empresas/form-empresas/form-empresas.component';
 import { FormProyectosComponent } from './proyectos/form-proyectos/form-proyectos.component';
+import { CargandoComponent } from './cargando/cargando.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { FormProyectosComponent } from './proyectos/form-proyectos/form-proyecto
         EmpresasComponent,
         ProyectosComponent,
         FormEmpresasComponent,
-        FormProyectosComponent
+        FormProyectosComponent,
+        CargandoComponent
     ],
     imports: [
         CommonModule,
