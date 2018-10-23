@@ -1,0 +1,22 @@
+<app-cargando [mostrar]="cargando"></app-cargando>
+
+<div class="row">
+    <div class="ml-auto">
+        <button (click)="volver()" class="btn btn-primary">
+            Volver
+        </button>
+        <button (click)="nuevo()" class="btn btn-primary">
+            Nuevo Documento
+        </button>
+    </div>
+</div>
+
+<div *ngIf="!cargando && documentos.length === 0" class="row alert alert-warning" style="margin-top:20px;">
+    <div class="col-md-12">
+        <h4>Aún no se ha registrado ningún documento para esta categoría</h4>
+    </div>
+</div>
+
+<app-tabla *ngIf="datos.length > 0" [titulo]="titulo" [columnas]="columnas" [datos]="datos" (id_editar)="recibir_redireccion($event)">
+
+</app-tabla>

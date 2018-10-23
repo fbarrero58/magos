@@ -24,6 +24,7 @@ export class MainComponent implements OnInit {
     datos_calendario = [];
     fecha_enviar = '';
     fecha_mostrar = '';
+    primerLlamado = true;
     evento = new Evento();
 
   constructor(public _us: UsuarioService, public _cs: CalendarioService, public _vs: VmcaService) { }
@@ -31,7 +32,6 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     this.traer_datos();
     $('select').select2();
-    this.cargando = false;
   }
 
   traer_datos() {
@@ -41,7 +41,7 @@ export class MainComponent implements OnInit {
         });
     }
 
-    if (this._vs.eventos.length === 0) {
+    if (this._vs.eventos.length === 0 || !this.primerLlamado) {
        this._vs.traer_eventos().subscribe((resp: any) => {
             this._vs.eventos = resp.eventos;
             this.armar_datos();
@@ -53,11 +53,12 @@ export class MainComponent implements OnInit {
 
   armar_datos() {
     let obj_aux: any = {};
+    this.datos_calendario = [];
     this._vs.eventos.forEach(e => {
         obj_aux.allDay = true;
         obj_aux.className = e.color;
         obj_aux.id = e.id;
-        obj_aux.start = new Date(e.fecha);
+        obj_aux.start = this._cs.sumarDias(new Date(e.fecha), 1);
         obj_aux.title = e.titulo;
         this.datos_calendario.push(obj_aux);
         obj_aux = {};
@@ -91,15 +92,21 @@ export class MainComponent implements OnInit {
         showConfirmButton: true
       });
       this.cargando = false;
-      this.traer_datos();
+      if (!resp.err) {
+        this.traer_datos();
+        $('#modal_detalle').modal('hide');
+      }
   }
 
   inicializar_calendario() {
     const today = new Date();
-    const y = today.getFullYear();
-    const m = today.getMonth();
-    const d = today.getDate();
     const calendar = $('#fullCalendar');
+    if (!this.primerLlamado) {
+      calendar.fullCalendar('removeEvents');
+      calendar.fullCalendar('addEventSource', this.datos_calendario);
+      calendar.fullCalendar('refetchEvents');
+    }
+
     calendar.fullCalendar({
         viewRender: CONFIG_HORAS.viewRender,
         locale: 'es',
@@ -129,8 +136,9 @@ export class MainComponent implements OnInit {
           this.evento.id = calEvent.id;
           this.evento.titulo = calEvent.title;
           $('#modal_detalle').modal('show');
-          console.log(this.evento);
         }
     });
+    this.primerLlamado = false;
+    this.cargando = false;
   }
 }

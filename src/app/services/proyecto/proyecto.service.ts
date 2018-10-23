@@ -38,4 +38,9 @@ export class ProyectoService {
     return this.http.put(url, proyecto);
   }
 
+  proyectos_por_usuario(id_usuario) {
+    const url = `${URL_SERVICIOS}proyectos/usuario/${id_usuario}?token=${localStorage.getItem('token')}`;
+    return this.http.get(url);
+  }
+
 }

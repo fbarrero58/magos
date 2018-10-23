@@ -9,8 +9,7 @@ import { EmpresasComponent } from './empresas/empresas.component';
 import { ProyectosComponent } from './proyectos/proyectos.component';
 import { FormEmpresasComponent } from './empresas/form-empresas/form-empresas.component';
 import { FormProyectosComponent } from './proyectos/form-proyectos/form-proyectos.component';
-import { CargandoComponent } from './cargando/cargando.component';
-
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -21,12 +20,12 @@ import { CargandoComponent } from './cargando/cargando.component';
         EmpresasComponent,
         ProyectosComponent,
         FormEmpresasComponent,
-        FormProyectosComponent,
-        CargandoComponent
+        FormProyectosComponent
     ],
     imports: [
         CommonModule,
-        FormsModule
+        FormsModule,
+        SharedModule
     ],
     exports: [
         UsuariosComponent

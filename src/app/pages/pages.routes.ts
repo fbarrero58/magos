@@ -13,6 +13,12 @@ import { FormEmpresasComponent } from './administracion/empresas/form-empresas/f
 import { FormProyectosComponent } from './administracion/proyectos/form-proyectos/form-proyectos.component';
 import { LoginGuardGuard } from '../services/guards/login-guard.guard';
 import { InfoPersonalComponent } from './perfil/info-personal/info-personal.component';
+import { GestionDocumentalComponent } from './gestion-documental/gestion-documental.component';
+import { CategoriasComponent } from './gestion-documental/categorias/categorias.component';
+import { DocumentosComponent } from './gestion-documental/documentos/documentos.component';
+import { FormGestionComponent } from './gestion-documental/form-gestion/form-gestion.component';
+import { FormCategoriasComponent } from './gestion-documental/categorias/form-categorias/form-categorias.component';
+import { FormDocumentosComponent } from './gestion-documental/documentos/form-documentos/form-documentos.component';
 
 const pagesRoutes: Routes = [
     {
@@ -22,6 +28,15 @@ const pagesRoutes: Routes = [
         children: [
             {path: 'main', component: MainComponent},
             {path: 'registro-horas', component: RegistroHorasComponent},
+            {path: 'gestion-documental', component: GestionDocumentalComponent},
+            {path: 'gestion-documental/nuevo', component: FormGestionComponent},
+            {path: 'gestion-documental/editar/:id', component: FormGestionComponent},
+            {path: 'gestion-documental/categorias/:tema', component: CategoriasComponent},
+            {path: 'gestion-documental/categorias/:tema/nuevo', component: FormCategoriasComponent},
+            {path: 'gestion-documental/categorias/:tema/editar', component: FormCategoriasComponent},
+            {path: 'gestion-documental/documentos/:tema/:categoria', component: DocumentosComponent},
+            {path: 'gestion-documental/documentos/:tema/:categoria/nuevo', component: FormDocumentosComponent},
+            {path: 'gestion-documental/documentos/:tema/:categoria/editar', component: FormDocumentosComponent},
             // Perfil
             {path: 'pefil/info-personal', component: InfoPersonalComponent},
             // Administración

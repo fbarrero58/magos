@@ -1,7 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { CONFIG_HORAS } from '../../constantes/calendarios';
-import { CalendarioService } from '../../services/calendario.service';
+
+// Clases
 import { RegistroHora } from '../../classes/registro-hora';
+import { Vmca } from '../../classes/vmca';
+import { Proyecto } from '../../classes/proyecto';
+
+// Servicios
+import { VmcaService } from '../../services/vmca/vmca.service';
+import { HorasService } from '../../services/horas/horas.service';
+import { ProyectoService } from '../../services/proyecto/proyecto.service';
+import { CalendarioService } from '../../services/calendario.service';
+
+
 
 declare var md, $: any;
 declare function swal(string): any;
@@ -14,25 +25,97 @@ declare function swal(string): any;
 export class RegistroHorasComponent implements OnInit {
 
   fecha_seleccionada = '';
-  modo = 'new';
-  proyectos = [{valor: '1', nombre: 'Proyecto 1'}, {valor: '2', nombre: 'Proyecto 2'}];
-  actividades = [{valor: '1', nombre: 'Actividad 1'}, {valor: '2', nombre: 'Actividad 2'}];
+  modo = 'nuevo';
+  proyectos: Proyecto[] = [];
+  actividades: Vmca[] = [];
+  tiene_ticket = false;
   registro = new RegistroHora(0, '', '', '', '');
+  cargando = true;
+  horas: RegistroHora[];
+  primer_llamdo = true;
 
-  constructor(public _cs: CalendarioService) { }
+  constructor(public _cs: CalendarioService, public _ps: ProyectoService, public _vs: VmcaService,
+              public _hs: HorasService) {
+
+
+  }
 
   ngOnInit() {
-      this.inicializar_calendario();
+      this.traer_datos();
       md.initFormExtendedDatetimepickers();
       $('select').select2();
   }
 
-  inicializar_calendario() {
+  traer_datos() {
+
+    // Cargar Proyectos
+    if (this.primer_llamdo) {
+
+      this._ps.proyectos_por_usuario(localStorage.getItem('id_usuario')).subscribe((resp: any) => {
+        this.proyectos = resp.proyecto;
+        this.proyectos.forEach(e => {
+          e.nombre = `${e.nombre} - ${e.empresa}`;
+        });
+      });
+
+      // Listener de cambio de proyecto
+      $('#proyecto_form').on('change', (e) => {
+        this.cargando = true;
+        const proyecto = this.buscar_proyecto(e.target.value);
+        this.registro.servicio = proyecto.linea;
+        this._vs.traer_actividades(proyecto.tipo).subscribe((resp: any) => {
+          this.actividades = resp.actividades;
+          this.cargando = false;
+        });
+        if (proyecto.ticket === 'T') { this.tiene_ticket = true;
+        } else { this.tiene_ticket = false; }
+      });
+
+    }
+
+    // Cargar las horas
+    this._hs.traer_registros(localStorage.getItem('id_usuario')).subscribe((resp: any) => {
+      this.horas = resp.horas;
+      let obj_aux: any = {};
+      const datos_calendario = [];
+      this.horas.forEach(e => {
+          obj_aux.allDay = true;
+          obj_aux.id = e.id;
+          obj_aux.className = 'event-red';
+          obj_aux.start = this._cs.sumarDias(new Date(e.fecha_db), 1);
+          obj_aux.title = e.horas;
+          obj_aux.objeto = e;
+          datos_calendario.push(obj_aux);
+          obj_aux = {};
+      });
+      this.inicializar_calendario(datos_calendario);
+    });
+
+  }
+
+  buscar_proyecto(id) {
+
+    const aux = this.proyectos.filter(e => {
+      if (e.id === id) {
+        return e;
+      }
+    });
+    return aux[0];
+  }
+
+  inicializar_calendario(datos_calendario) {
     const today = new Date();
     const y = today.getFullYear();
     const m = today.getMonth();
     const d = today.getDate();
     const calendar = $('#fullCalendar');
+
+    if (!this.primer_llamdo) {
+      calendar.fullCalendar('removeEvents');
+      calendar.fullCalendar('addEventSource', datos_calendario);
+      calendar.fullCalendar('refetchEvents');
+    }
+
     calendar.fullCalendar({
       viewRender: CONFIG_HORAS.viewRender,
       locale: 'es',
@@ -48,41 +131,91 @@ export class RegistroHorasComponent implements OnInit {
       views: CONFIG_HORAS.views,
       editable: true,
       eventLimit: true,
-      select: (start, end) => {
-
+      select: (start) => {
+        this.modo = 'nuevo';
+        this.registro.ticket = '';
+        this.registro.descripcion = '';
         this.fecha_seleccionada =  this._cs.format_to_yyyy_mm_dd(( this._cs.sumarDias(start._d, 1).toString()).split(' '));
+        this.registro.fecha_db = this.fecha_seleccionada;
         this.fecha_seleccionada = this._cs.format_to_nice(this.fecha_seleccionada);
+        $('#horas_form').val('1:00');
         $('#modal_detalle').modal('show');
 
       },
-      events: [{
-          title: 'All Day Event',
-          allDay: true,
-          _id: 'lo que yo quiera',
-          start: new Date(y, m, 1),
-          className: 'event-green'
-        }],
+      events: datos_calendario,
       eventClick: (calEvent) => {
-        console.log(calEvent);
+        this.fecha_seleccionada =  this._cs.format_to_yyyy_mm_dd(( this._cs.sumarDias(calEvent.start._d, 1).toString()).split(' '));
+        this.fecha_seleccionada = this._cs.format_to_nice(this.fecha_seleccionada);
+        this.modo = 'editar';
+        this.registro = calEvent.objeto;
+        if (this.registro.tiene_ticket === 'T' ) { this.tiene_ticket = true;
+        } else { this.tiene_ticket = false; }
+        $('#modal_detalle').modal('show');
       }
     });
+    this.cargando = false;
+    this.primer_llamdo = false;
   }
 
   onSubmit(e) {
     const proyecto = $('#proyecto_form');
     const actividad = $('#actividad_form');
     const horas = $('#horas_form');
-    if (!proyecto.val() || !actividad.val() || !horas.val()) {
+    if (this.modo === 'nuevo') {
+      if (!proyecto.val() || !actividad.val() || !horas.val()) {
+        return swal({
+          type: 'error',
+          title: 'Algo va mal...',
+          text: 'Parece que aún faltan algunos datos',
+        });
+      }
+    }
+
+    if (!this.registro.ticket && this.tiene_ticket) {
       return swal({
         type: 'error',
         title: 'Algo va mal...',
-        text: 'Parece que aún faltan algunos datos',
+        text: 'Este proyecto requiere que se especifique un número de ticket',
       });
+    }
+    this.cargando = true;
+    if (!this.tiene_ticket) {
+      this.registro.ticket = '';
     }
     this.registro.actividad = actividad.val();
     this.registro.proyecto = proyecto.val();
     this.registro.horas = horas.val();
-    console.log(this.registro);
+    this.registro.usuario = localStorage.getItem('id_usuario');
+    if (this.modo === 'nuevo') {
+      this._hs.enviar_registro(this.registro).subscribe(resp => {
+        this.respuesta_servicio(resp);
+      });
+    } else {
+      this._hs.actualizar_registro(this.registro.id, this.registro).subscribe(resp => {
+        this.respuesta_servicio(resp);
+      });
+    }
+  }
+
+  eliminar_registro() {
+    this._hs.eliminar_registro(this.registro.id).subscribe(resp => {
+      this.respuesta_servicio(resp);
+    });
+  }
+
+  respuesta_servicio(resp) {
+    let tipo = 'success';
+      if (resp.err) {tipo = 'error'; }
+      swal({
+        type: tipo,
+        title: resp.mensaje,
+        showConfirmButton: true
+      });
+      this.cargando = false;
+      if (!resp.err) {
+        this.traer_datos();
+        $('#modal_detalle').modal('hide');
+      }
   }
 
 }

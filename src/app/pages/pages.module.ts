@@ -13,14 +13,24 @@ import { RegistroHorasComponent } from './registro-horas/registro-horas.componen
 import { AdminModule } from './administracion/admin.module';
 import { PerfilModule } from './perfil/perfil.module';
 import { PipesModule } from '../pipes/pipes.module';
-
-
+import { GestionDocumentalComponent } from './gestion-documental/gestion-documental.component';
+import { CategoriasComponent } from './gestion-documental/categorias/categorias.component';
+import { DocumentosComponent } from './gestion-documental/documentos/documentos.component';
+import { FormGestionComponent } from './gestion-documental/form-gestion/form-gestion.component';
+import { FormCategoriasComponent } from './gestion-documental/categorias/form-categorias/form-categorias.component';
+import { FormDocumentosComponent } from './gestion-documental/documentos/form-documentos/form-documentos.component';
 
 @NgModule({
     declarations: [
         PagesComponent,
         MainComponent,
-        RegistroHorasComponent
+        RegistroHorasComponent,
+        GestionDocumentalComponent,
+        CategoriasComponent,
+        DocumentosComponent,
+        FormGestionComponent,
+        FormCategoriasComponent,
+        FormDocumentosComponent
     ],
     imports: [
         CommonModule,

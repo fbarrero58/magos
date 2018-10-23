@@ -12,6 +12,8 @@ import { VmcaService } from './vmca/vmca.service';
 import { EmpresaService } from './empresa/empresa.service';
 import { AlianzaService } from './alianza/alianza.service';
 import { ProyectoService } from './proyecto/proyecto.service';
+import { HorasService } from './horas/horas.service';
+import { DocumentosService } from './documentos/documentos.service';
 
 @NgModule({
     declarations: [],
@@ -28,7 +30,9 @@ import { ProyectoService } from './proyecto/proyecto.service';
         LoginService,
         EmpresaService,
         AlianzaService,
-        ProyectoService
+        ProyectoService,
+        HorasService,
+        DocumentosService
     ]
 })
 

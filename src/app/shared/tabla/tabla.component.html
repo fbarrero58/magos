@@ -1,19 +1,11 @@
-<app-cargando [mostrar]="cargando"></app-cargando>
-
-<div class="row" [ngClass]="{'animated fadeIn': !cargando, 'ocultar': cargando}">
-    <div class="col-md-12 col-sm-12 text-right">
-        <button (click)="router.navigate(['admin/empresas/form/nuevo'])" class="btn btn-primary">Nueva Empresa</button>
-    </div>
-</div>
-
-<div class="row" [ngClass]="{'animated fadeIn': !cargando, 'ocultar': cargando}">
+<div class="row">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-primary card-header-icon">
                 <div class="card-icon">
                     <i class="material-icons">assignment</i>
                 </div>
-                <h4 class="card-title">Empresas Registradas</h4>
+                <h4 class="card-title"> {{ titulo }} </h4>
             </div>
             <div class="card-body">
                 <div class="toolbar">

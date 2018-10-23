@@ -15,7 +15,7 @@ declare function init_plugins();
 })
 export class LoginComponent implements OnInit {
 
-  myLogin = new Login('fbarrero', 'Martin1994');
+  myLogin = new Login('felipe.barrero', 'Martin1994');
   submitted = false;
 
   constructor(

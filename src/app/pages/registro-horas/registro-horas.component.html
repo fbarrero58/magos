@@ -1,3 +1,5 @@
+<app-cargando [mostrar]="cargando"></app-cargando>
+
 <div class="row">
 
     <div class="col-md-10 col-sm-12 ml-auto mr-auto">
@@ -11,7 +13,7 @@
 </div>
 
 
-<div class="modal fade" id="modal_detalle" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_detalle" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <form (ngSubmit)="onSubmit(registroForm)" #registroForm="ngForm">
             <div class="modal-content">
@@ -25,23 +27,29 @@
                     <div class="row">
                         <label class="col-sm-2 col-form-label"> Proyecto </label>
                         <div class="col-sm-10">
-                            <div class="form-group">
+                            <div class="form-group" [hidden]="modo === 'editar'">
                                 <select style="width:100%" [(ngModel)]="registro.proyecto" name="proyecto" id="proyecto_form">
-                                    <option *ngFor="let proyecto of proyectos" [value]="proyecto.valor">{{ proyecto.nombre }}</option>
+                                    <option *ngFor="let proyecto of proyectos" [value]="proyecto.id">{{ proyecto.nombre }}</option>
                                 </select>
                             </div>
+                            <div class="form-group" [hidden]="modo === 'nuevo'">
+                                <input type="text" class="form-control" [value]="registro.nombre_proyecto" disabled>
+                            </div>
                         </div>
-                        <div class="col-sm-12 text-center" *ngIf="modo === 'new'">
+                        <!-- <div class="col-sm-12 text-center" *ngIf="modo === 'nuevo'">
                             <button class="btn btn-primary btn-link">Agregar Proyecto</button>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="row">
                         <label class="col-sm-2 col-form-label"> Actividad </label>
                         <div class="col-sm-10">
-                            <div class="form-group">
+                            <div class="form-group" [hidden]="modo === 'editar'">
                                 <select style="width:100%" [(ngModel)]="registro.actividad" name="actividad" id="actividad_form">
-                                    <option *ngFor="let actividad of actividades" [value]="actividad.valor">{{ actividad.nombre }}</option>
+                                    <option *ngFor="let actividad of actividades" [value]="actividad.id">{{ actividad.nombre }}</option>
                                 </select>
+                            </div>
+                            <div class="form-group" [hidden]="modo === 'nuevo'">
+                                <input type="text" class="form-control" [value]="registro.nombre_actividad" disabled>
                             </div>
                         </div>
                         <label class="col-sm-2 col-form-label"> Horas </label>
@@ -50,15 +58,26 @@
                                 <input type="text" [(ngModel)]="registro.horas" name="horas" class="form-control timepicker" id="horas_form">
                             </div>
                         </div>
+                        <label [hidden]="!tiene_ticket" class="col-sm-2 col-form-label"> Ticket </label>
+                        <div [hidden]="!tiene_ticket" class="col-sm-10">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="registro.ticket" name="ticket" class="form-control">
+                            </div>
+                        </div>
                         <div class="col-sm-12">
                             <textarea class="form-control" [(ngModel)]="registro.descripcion" name="descripcion" placeholder="Descripción" rows="3" required></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button (click)="eliminar_registro()" [hidden]="modo === 'nuevo'" type="button" class="btn btn-danger btn-link">Eliminar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" [disabled]="!registroForm.form.valid">Guardar</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="!registroForm.form.valid || cargando">
+                        <i [hidden]="!cargando" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                        Guardar
+                    </button>
                 </div>
+
             </div>
         </form>
     </div>

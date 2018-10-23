@@ -60,4 +60,9 @@ export class VmcaService {
     return this.http.delete(url);
   }
 
+  traer_actividades(tipo) {
+    const url = `${URL_SERVICIOS}vmca/actividades/${tipo}?token=${localStorage.getItem('token')}`;
+    return this.http.get(url);
+  }
+
 }
