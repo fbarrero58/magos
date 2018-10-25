@@ -1,7 +1,14 @@
+// Configuracion
 import { Component, OnInit } from '@angular/core';
-import { Temas } from '../../../../classes/temas';
-import { DocumentosService } from '../../../../services/documentos/documentos.service';
 import { ActivatedRoute, Router } from '@angular/router/';
+
+// Servicios
+import { DocumentosService } from '../../../../services/documentos/documentos.service';
+import { GenericoService } from '../../../../services/generico.service';
+
+// Clases
+import { Temas } from '../../../../classes/temas';
+
 declare var $: any;
 declare function swal(string): any;
 
@@ -18,7 +25,8 @@ export class FormDocumentosComponent implements OnInit {
   id_categoria;
   modo_editar = false;
 
-  constructor(public _ds: DocumentosService, public ar: ActivatedRoute, public router: Router) {
+  constructor(public _ds: DocumentosService, public ar: ActivatedRoute, public router: Router,
+              public _gs: GenericoService) {
 
     this.ar.params.subscribe( resp => {
       this.id_tema = resp['tema'];
@@ -32,6 +40,8 @@ export class FormDocumentosComponent implements OnInit {
       }
 
     });
+
+    this._gs.nombre_pagina = 'Formulario Documentos';
    }
 
   ngOnInit() {

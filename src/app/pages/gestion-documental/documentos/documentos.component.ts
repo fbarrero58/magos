@@ -1,7 +1,13 @@
+// Configuracion
 import { Component, OnInit } from '@angular/core';
-import { Temas } from '../../../classes/temas';
 import { Router, ActivatedRoute } from '@angular/router';
+
+// Servicios
 import { DocumentosService } from '../../../services/documentos/documentos.service';
+import { GenericoService } from '../../../services/generico.service';
+
+// Clases
+import { Temas } from '../../../classes/temas';
 
 @Component({
   selector: 'app-documentos',
@@ -23,13 +29,16 @@ export class DocumentosComponent implements OnInit {
   documentos: Temas[];
   cargando = true;
 
-  constructor(public router: Router, public activatedRoute: ActivatedRoute, public _ds: DocumentosService) {
+  constructor(public router: Router, public activatedRoute: ActivatedRoute, public _ds: DocumentosService,
+              public _gs: GenericoService) {
 
     if (!this._ds.categoria_seleccionada || !this._ds.tema_seleccionado) {
       this.router.navigate(['/gestion-documental']);
     } else {
        this.titulo = `Documentos para ${this._ds.categoria_seleccionada.nombre}`;
     }
+
+    this._gs.nombre_pagina = 'Documentos';
 
   }
 
@@ -51,7 +60,7 @@ export class DocumentosComponent implements OnInit {
       this.documentos.forEach(e => {
         aux_datos.push(e.nombre);
         aux_datos.push(e.descripcion);
-        aux_datos.push(`<a href="${e.link}" target="_blank" class="btn btn-primary btn-link">Descargar</a>`);
+        aux_datos.push(`<a href="${e.url}" target="_blank" class="btn btn-primary btn-link">Descargar</a>`);
         aux_datos.push(`<button value="${e.id}" class="btn btn-warning btn-link editar">Editar</button>`);
         datos_tabla.push(aux_datos);
         aux_datos = [];

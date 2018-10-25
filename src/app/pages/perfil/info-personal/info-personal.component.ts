@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 // Servicios
 import { UsuarioService } from '../../../services/usuario.service';
 import { CalendarioService } from '../../../services/calendario.service';
+import { GenericoService } from '../../../services/generico.service';
 
 // Clases
 import { Usuario } from '../../../classes/usuario';
@@ -21,7 +22,9 @@ export class InfoPersonalComponent implements OnInit {
   usuario = new Usuario('', '', '', '', '', '', '');
   cargando = true;
 
-  constructor( public _us: UsuarioService, public _cs: CalendarioService ) { }
+  constructor( public _us: UsuarioService, public _cs: CalendarioService, public _gs: GenericoService ) {
+    this._gs.nombre_pagina = 'Información Personal';
+   }
 
   ngOnInit() {
     this.traer_datos();

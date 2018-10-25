@@ -1,8 +1,15 @@
+// Configuracion
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Temas } from '../../../classes/temas';
+
+// Servicios
 import { VmcaService } from '../../../services/vmca/vmca.service';
 import { DocumentosService } from '../../../services/documentos/documentos.service';
+import { GenericoService } from '../../../services/generico.service';
+
+// Clases
+import { Temas } from '../../../classes/temas';
+
 declare var $: any;
 declare function swal(string): any;
 
@@ -17,13 +24,14 @@ export class FormGestionComponent implements OnInit {
   modo_editar = false;
   cargando = false;
 
-  constructor( public router: Router, public _vs: VmcaService, public _ds: DocumentosService) {
+  constructor( public router: Router, public _vs: VmcaService, public _ds: DocumentosService, public _gs: GenericoService) {
     if ( window.location.href.includes('editar') && !this._ds.tema_seleccionado ) {
       this.router.navigate(['/gestion-documental']);
     } else if (window.location.href.includes('editar')) {
       this.modo_editar = true;
       this.tema = this._ds.tema_seleccionado;
     }
+    this._gs.nombre_pagina = 'Formulario de Temas';
   }
 
   ngOnInit() {

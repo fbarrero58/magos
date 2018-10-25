@@ -59,4 +59,9 @@ export class UsuarioService {
     return this.http.get(url);
   }
 
+  traer_aprobadores() {
+    const url = `${URL_SERVICIOS}usuarios/aprobadores?token=${localStorage.getItem('token')}`;
+    return this.http.get(url);
+  }
+
 }

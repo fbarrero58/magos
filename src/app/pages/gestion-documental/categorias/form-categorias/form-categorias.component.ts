@@ -1,8 +1,14 @@
+// Configuracion
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Temas } from '../../../../classes/temas';
+
+// Servicios
 import { VmcaService } from '../../../../services/vmca/vmca.service';
 import { DocumentosService } from '../../../../services/documentos/documentos.service';
+import { GenericoService } from '../../../../services/generico.service';
+
+// Temas
+import { Temas } from '../../../../classes/temas';
 
 declare var $: any;
 declare function swal(string): any;
@@ -19,7 +25,8 @@ export class FormCategoriasComponent implements OnInit {
   categoria = new Temas('T');
   modo_editar = false;
 
-  constructor(public router: Router, public _vs: VmcaService, public _ds: DocumentosService, public ac: ActivatedRoute) {
+  constructor(public router: Router, public _vs: VmcaService, public _ds: DocumentosService,
+              public ac: ActivatedRoute, public _gs: GenericoService) {
     if ( window.location.href.includes('editar') && !this._ds.categoria_seleccionada ) {
       this.router.navigate(['/gestion-documental/']);
     } else if (window.location.href.includes('editar')) {
@@ -30,6 +37,8 @@ export class FormCategoriasComponent implements OnInit {
     this.ac.params.subscribe( resp => {
       this.id_tema = resp['tema'];
     });
+
+    this._gs.nombre_pagina = 'Formulario de Categorias';
 
   }
 

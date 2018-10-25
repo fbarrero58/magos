@@ -10,6 +10,7 @@ import { ProyectosComponent } from './proyectos/proyectos.component';
 import { FormEmpresasComponent } from './empresas/form-empresas/form-empresas.component';
 import { FormProyectosComponent } from './proyectos/form-proyectos/form-proyectos.component';
 import { SharedModule } from '../../shared/shared.module';
+import { DetalleSolicitudComponent } from './solicitudes/detalle-solicitud/detalle-solicitud.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { SharedModule } from '../../shared/shared.module';
         EmpresasComponent,
         ProyectosComponent,
         FormEmpresasComponent,
-        FormProyectosComponent
+        FormProyectosComponent,
+        DetalleSolicitudComponent
     ],
     imports: [
         CommonModule,

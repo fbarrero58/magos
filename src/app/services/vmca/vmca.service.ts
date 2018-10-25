@@ -17,6 +17,7 @@ export class VmcaService {
   eventos: Evento[] = [];
   public estados_activos: Vmca[] = [{id: 'T', nombre: 'Activo'}, {id: 'F', nombre: 'Inactivo'}];
   public estados_si_no: Vmca[] = [{id: 'T', nombre: 'Si'}, {id: 'F', nombre: 'No'}];
+  public tipos_solicitudes: Vmca[] = [{id: 'permiso', nombre: 'Permiso'}, {id: 'vacaciones', nombre: 'Vacaciones'}, {id: 'otros', nombre: 'Otros'}];
 
   constructor( public http: HttpClient ) { }
 

@@ -9,18 +9,38 @@ export const ADMIN_SOLICITUDES = [{
     id_tabla: 'tabla_permisos',
     datos: [],
     columnas: [{ title: 'Solicitante' }, { title: 'Aprobador' }, { title: 'Estado' }, { title: 'Fecha' },
-                { title: 'Horas' }, { title: 'Acciones' }]
+                { title: 'Acciones' }]
 }, {
     id: 'vacaciones',
     id_tabla: 'tabla_vacaciones',
     datos: [],
-    columnas: [{ title: 'Solicitante' }, { title: 'Aprobador' }, { title: 'Estado' }, { title: 'Desde' },
+    columnas: [{ title: 'Solicitante' }, { title: 'Aprobador' }, { title: 'Desde' },
                 { title: 'Hasta' }, { title: 'Acciones' }]
 }, {
     id: 'otros',
     id_tabla: 'tabla_otros',
     datos: [],
-    columnas: [{ title: 'Solicitante' }, { title: 'Aprobador' }, { title: 'Estado' }, { title: 'Fecha' },
+    columnas: [{ title: 'Solicitante' }, { title: 'Aprobador' }, { title: 'Fecha' },
+                { title: 'Motivo' }, { title: 'Acciones' }]
+}];
+
+export const USUARIO_SOLICITUDES = [{
+    id: 'permisos',
+    id_tabla: 'tabla_permisos',
+    datos: [],
+    columnas: [{ title: 'Aprobador' }, { title: 'Estado' }, { title: 'Fecha' },
+                { title: 'Acciones' }]
+}, {
+    id: 'vacaciones',
+    id_tabla: 'tabla_vacaciones',
+    datos: [],
+    columnas: [{ title: 'Aprobador' }, { title: 'Estado' }, { title: 'Desde' },
+                { title: 'Hasta' }, { title: 'Acciones' }]
+}, {
+    id: 'otros',
+    id_tabla: 'tabla_otros',
+    datos: [],
+    columnas: [{ title: 'Aprobador' }, { title: 'Estado' }, { title: 'Fecha' },
                 { title: 'Motivo' }, { title: 'Acciones' }]
 }];
 

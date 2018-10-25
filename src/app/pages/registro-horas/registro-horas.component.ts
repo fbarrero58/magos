@@ -11,8 +11,7 @@ import { VmcaService } from '../../services/vmca/vmca.service';
 import { HorasService } from '../../services/horas/horas.service';
 import { ProyectoService } from '../../services/proyecto/proyecto.service';
 import { CalendarioService } from '../../services/calendario.service';
-
-
+import { GenericoService } from '../../services/generico.service';
 
 declare var md, $: any;
 declare function swal(string): any;
@@ -35,9 +34,9 @@ export class RegistroHorasComponent implements OnInit {
   primer_llamdo = true;
 
   constructor(public _cs: CalendarioService, public _ps: ProyectoService, public _vs: VmcaService,
-              public _hs: HorasService) {
+              public _hs: HorasService, public _gs: GenericoService) {
 
-
+      this._gs.nombre_pagina = 'Registro de Horas';
   }
 
   ngOnInit() {

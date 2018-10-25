@@ -1,0 +1,103 @@
+<app-cargando [mostrar]="cargando"></app-cargando>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card ">
+            <div class="card-header card-header-primary card-header-text">
+                <div class="card-text">
+                    <h4 class="card-title">Formulario de Solicitudes</h4>
+                </div>
+            </div>
+            <form (ngSubmit)="onSubmit(proyectosForm)" #proyectosForm="ngForm">
+                <div class="card-body">
+                    <hr>
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label"> Tipo de Solicitud </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select style="width:100%" [(ngModel)]="solicitud.tipo_solicitud" name="tipo_solicitud" id="form_tipo_solicitud">
+                                    <option *ngFor="let tipo of _vs.tipos_solicitudes" [value]="tipo.id">{{ tipo.nombre }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <label [hidden]="tipo_seleccionado === ''" class="col-sm-2 col-form-label"> Aprobador </label>
+                        <div class="col-sm-4" [hidden]="tipo_seleccionado === ''">
+                            <div class="form-group">
+                                <select style="width:100%" [(ngModel)]="solicitud.aprobador" name="aprobador" id="form_tipo_aprobador">
+                                    <option *ngFor="let aprobador of aprobadores" [value]="aprobador.id">{{ aprobador.nombre }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Permisos -->
+                    <div class="row" [hidden]="tipo_seleccionado !== 'permiso'">
+                        <label class="col-sm-2 col-form-label"> Fecha </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="solicitud.fecha_permiso" name="fecha_permiso" class="form-control datepicker" id="form_fecha_permiso">
+                                <span class="bmd-help"> Fecha en la que necesita el permiso </span>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> Horas Requeridas </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="solicitud.horas_permiso" name="horas_permiso" class="form-control timepicker" id="form_horas_permiso" value="1:00">
+                            </div>
+                        </div>
+                        <label class="col-sm-2  col-form-label">
+                            Descripción
+                        </label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" [(ngModel)]="solicitud.descripcion" name="descripcion" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <!-- Vacaciones -->
+                    <div class="row" [hidden]="tipo_seleccionado !== 'vacaciones'">
+                        <label class="col-sm-2 col-form-label"> Fecha Inicio </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="solicitud.desde" name="fecha_desde" class="form-control datepicker" id="form_fecha_desde">
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> Fecha Fin </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="solicitud.hasta" name="fecha_hasta" class="form-control datepicker" id="form_fecha_hasta">
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> Número de días habiles </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="number" [(ngModel)]="solicitud.dias_habiles" name="dias_habiles" class="form-control" min="0">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Otros -->
+                    <div class="row" [hidden]="tipo_seleccionado !== 'otros'">
+                        <label class="col-sm-2 col-form-label"> Motivo </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select style="width:100%" [(ngModel)]="solicitud.motivo" name="motivo" id="form_motivo_otros">
+                                    <option *ngFor="let tipo of tipos_otros" [value]="tipo.id">{{ tipo.nombre }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> Fecha </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="solicitud.fecha_otros" name="fecha_otros" class="form-control datepicker" id="form_fecha_otros">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="button" (click)="router.navigate(['/solicitudes'])" class="btn btn-primary ml-auto" style="margin-right:15px">Volver</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="cargando || tipo_seleccionado === ''">
+                        <i [hidden]="!cargando" class="fa fa-spinner fa-pulse fa-3x fa-fw cargando"></i>
+                        Enviar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

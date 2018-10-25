@@ -63,12 +63,12 @@ export class FormUsuariosComponent implements OnInit {
     }
   }
 
-  onSubmit() {
+  onSubmit(e) {
     this.cargando = true;
     const fecha = $('#fecha_nuevo_usuario');
     const rol = $('#rol_nuevo_usuario');
     const estado = $('#estado_nuevo_usuario');
-    if (!fecha.val() || !rol.val() || !estado.val()) {
+    if (!fecha.val() || !rol.val()) {
       this.cargando = false;
       return swal({
         type: 'error',
@@ -94,7 +94,7 @@ export class FormUsuariosComponent implements OnInit {
   }
 
   modificar_usuario() {
-    this._us.modificar_usuario(this.usuario).subscribe((resp: any) => {
+    this._us.modificar_usuario(this.usuario, 'administrador').subscribe((resp: any) => {
       this.respuesta_servicio(resp);
     });
   }

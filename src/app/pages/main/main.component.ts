@@ -5,6 +5,7 @@ import { UsuarioService } from '../../services/usuario.service';
 import { CONFIG_HORAS } from '../../constantes/calendarios';
 import { CalendarioService } from '../../services/calendario.service';
 import { VmcaService } from '../../services/vmca/vmca.service';
+import { GenericoService } from '../../services/generico.service';
 
 // Clases
 import { Evento } from '../../classes/evento';
@@ -27,7 +28,10 @@ export class MainComponent implements OnInit {
     primerLlamado = true;
     evento = new Evento();
 
-  constructor(public _us: UsuarioService, public _cs: CalendarioService, public _vs: VmcaService) { }
+  constructor(public _us: UsuarioService, public _cs: CalendarioService, public _vs: VmcaService,
+              public _gs: GenericoService) {
+                this._gs.nombre_pagina = 'Eventos';
+              }
 
   ngOnInit() {
     this.traer_datos();

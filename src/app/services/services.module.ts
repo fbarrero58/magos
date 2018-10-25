@@ -14,6 +14,8 @@ import { AlianzaService } from './alianza/alianza.service';
 import { ProyectoService } from './proyecto/proyecto.service';
 import { HorasService } from './horas/horas.service';
 import { DocumentosService } from './documentos/documentos.service';
+import { GenericoService } from './generico.service';
+import { SolicitudesService } from './solicitudes/solicitudes.service';
 
 @NgModule({
     declarations: [],
@@ -32,7 +34,9 @@ import { DocumentosService } from './documentos/documentos.service';
         AlianzaService,
         ProyectoService,
         HorasService,
-        DocumentosService
+        DocumentosService,
+        GenericoService,
+        SolicitudesService
     ]
 })
 

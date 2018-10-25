@@ -19,6 +19,9 @@ import { DocumentosComponent } from './gestion-documental/documentos/documentos.
 import { FormGestionComponent } from './gestion-documental/form-gestion/form-gestion.component';
 import { FormCategoriasComponent } from './gestion-documental/categorias/form-categorias/form-categorias.component';
 import { FormDocumentosComponent } from './gestion-documental/documentos/form-documentos/form-documentos.component';
+import { SolicitudesUsuarioComponent } from './solicitudes-usuario/solicitudes-usuario.component';
+import { FormSolicitudesComponent } from './solicitudes-usuario/form-solicitudes/form-solicitudes.component';
+import { DetalleSolicitudComponent } from './administracion/solicitudes/detalle-solicitud/detalle-solicitud.component';
 
 const pagesRoutes: Routes = [
     {
@@ -28,6 +31,9 @@ const pagesRoutes: Routes = [
         children: [
             {path: 'main', component: MainComponent},
             {path: 'registro-horas', component: RegistroHorasComponent},
+            {path: 'solicitudes', component: SolicitudesUsuarioComponent},
+            {path: 'solicitudes/nuevo', component: FormSolicitudesComponent},
+            // Gestión Documental
             {path: 'gestion-documental', component: GestionDocumentalComponent},
             {path: 'gestion-documental/nuevo', component: FormGestionComponent},
             {path: 'gestion-documental/editar/:id', component: FormGestionComponent},
@@ -44,6 +50,7 @@ const pagesRoutes: Routes = [
             {path: 'admin/usuarios/form/:tipo', component: FormUsuariosComponent},
             {path: 'admin/usuarios/form/:tipo/:id', component: FormUsuariosComponent},
             {path: 'admin/solicitudes', component: SolicitudesComponent},
+            {path: 'admin/solicitudes/detalle', component: DetalleSolicitudComponent},
             {path: 'admin/proyectos', component: ProyectosComponent},
             {path: 'admin/proyectos/form/:tipo', component: FormProyectosComponent},
             {path: 'admin/proyectos/form/:tipo/:id', component: FormProyectosComponent},

@@ -1,7 +1,14 @@
+// Configuracion
 import { ActivatedRoute, Router } from '@angular/router/';
 import { Component, OnInit } from '@angular/core';
+
+// Servicios
 import { DocumentosService } from '../../../services/documentos/documentos.service';
+import { GenericoService } from '../../../services/generico.service';
+
+// Clases
 import { Temas } from '../../../classes/temas';
+
 
 @Component({
   selector: 'app-categorias',
@@ -23,12 +30,14 @@ export class CategoriasComponent implements OnInit {
   cargando = true;
 
 
-  constructor(public activatedRoute: ActivatedRoute, public _ds: DocumentosService, public router: Router) {
+  constructor(public activatedRoute: ActivatedRoute, public _ds: DocumentosService, public router: Router, public _gs: GenericoService) {
     if (!this._ds.tema_seleccionado) {
       this.router.navigate(['/gestion-documental']);
     } else {
       this.titulo = `Categorias para ${this._ds.tema_seleccionado.nombre}`;
     }
+
+    this._gs.nombre_pagina = 'Categorias de Temas';
   }
 
   ngOnInit() {

@@ -1,6 +1,12 @@
+// Configuracion
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+
+// Servicios
 import { DocumentosService } from '../../services/documentos/documentos.service';
+import { GenericoService } from '../../services/generico.service';
+
+// Clases
 import { Temas } from '../../classes/temas';
 
 
@@ -22,7 +28,9 @@ export class GestionDocumentalComponent implements OnInit {
   temas: Temas[];
   cargando = true;
 
-  constructor( public _ds: DocumentosService, public router: Router ) { }
+  constructor( public _ds: DocumentosService, public router: Router, public _gs: GenericoService ) {
+    this._gs.nombre_pagina = 'Temas';
+  }
 
   ngOnInit() {
     this.cargar_datos();
