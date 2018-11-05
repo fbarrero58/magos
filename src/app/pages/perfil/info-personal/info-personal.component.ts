@@ -36,7 +36,7 @@ export class InfoPersonalComponent implements OnInit {
         .subscribe((resp: any) => {
           this.usuario = resp.Usuarios[0];
           if (this.usuario.fecha_nacimiento) {
-            this.usuario.fecha_nacimiento = this._cs.from_DB_to_calendar(this.usuario.fecha_nacimiento);
+            this.usuario.fecha_nacimiento_app = this._cs.from_DB_to_calendar(this.usuario.fecha_nacimiento);
           }
           this.cargando = false;
         });

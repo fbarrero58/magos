@@ -16,6 +16,7 @@ export class LoginService {
   token = '';
   id_usuario = '';
   usuario: any = '';
+  rol_usuario = '';
 
   constructor(
     public http: HttpClient,
@@ -31,6 +32,9 @@ export class LoginService {
     this.token = localStorage.getItem('token');
     this.id_usuario = localStorage.getItem('id_usuario');
     this.usuario = JSON.parse(localStorage.getItem('usuario'));
+    if (this.usuario) {
+      this.rol_usuario = this.usuario.id_rol;
+    }
   }
 
   cerrar_sesion() {

@@ -1,0 +1,93 @@
+<app-cargando [mostrar]="cargando"></app-cargando>
+
+<div class="row" *ngIf="tipo === 'editar'">
+    <div class="ml-auto">
+        <div class="col-md-12">
+            <button (click)="router.navigate(['/propuestas/condiciones'])" class="btn btn-primary">
+              Ver condiciones
+          </button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="card ">
+            <div class="card-header card-header-primary card-header-text">
+                <div class="card-text">
+                    <h4 class="card-title">Formulario de Propuestas</h4>
+                </div>
+            </div>
+            <form (ngSubmit)="onSubmit(empresasForm)" #empresasForm="ngForm">
+                <div class="card-body ">
+
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">Nombre de la Propuesta</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="propuesta.nombre" name="nombre" class="form-control" required>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label">Proyecto Asociado</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select style="width:100%;" [(ngModel)]="propuesta.id_proyecto" name="tipo" id="form_proyecto">
+                                  <option *ngFor="let proyecto of proyectos" [value]="proyecto.id"> {{ proyecto.nombre }} </option>
+                                </select>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label">Fecha en que se vendió</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="propuesta.fecha_vendida_app" name="fecha_vendida" class="form-control datepicker" id="form_fecha_vendida">
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label">Fecha en que se entregó</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="propuesta.fecha_entrega_app" name="fecha_entregada" class="form-control datepicker" id="form_fecha_entrega">
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label">Horas vendidas</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="number" [(ngModel)]="propuesta.horas_vendidas" name="horas_vendidas" class="form-control" required>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label">Valor total </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="propuesta.valor_total" name="valor_total" class="form-control" required>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label">Tipo de Moneda</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select style="width:100%;" [(ngModel)]="propuesta.tipo_moneda" name="moneda" id="tipo_moneda">
+                                  <option *ngFor="let proyecto of _vs.tipos_moneda" [value]="proyecto.id"> {{ proyecto.nombre }} </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px;">
+                        <label class="col-sm-2  col-form-label">
+                        Comentarios
+                      </label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" [(ngModel)]="propuesta.descripcion" name="descripcion" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row text-right" style="margin-left:30px; margin-bottom: 10px;">
+                        <button type="button" (click)="router.navigate(['/propuestas'])" class="btn btn-primary" style="color:white; margin-right:15px">Volver</button>
+                        <button *ngIf="tipo === 'editar'" type="button" (click)="eliminar()" class="btn btn-danger" style="margin-right:15px">Eliminar</button>
+                        <button [disabled]="!empresasForm.form.valid || cargando" class="btn btn-primary">
+                              <i [hidden]="!cargando" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                          Guardar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

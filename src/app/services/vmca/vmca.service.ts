@@ -14,10 +14,12 @@ export class VmcaService {
   tipos_servicio: Vmca[] = [];
   lineas_servicio: Vmca[] = [];
   estados_comerciales: Vmca[] = [];
+  estados_proyectos: Vmca[] = [];
   eventos: Evento[] = [];
   public estados_activos: Vmca[] = [{id: 'T', nombre: 'Activo'}, {id: 'F', nombre: 'Inactivo'}];
   public estados_si_no: Vmca[] = [{id: 'T', nombre: 'Si'}, {id: 'F', nombre: 'No'}];
   public tipos_solicitudes: Vmca[] = [{id: 'permiso', nombre: 'Permiso'}, {id: 'vacaciones', nombre: 'Vacaciones'}, {id: 'otros', nombre: 'Otros'}];
+  public tipos_moneda: Vmca[] = [{id: 'CLP', nombre: 'CLP'}, {id: 'UF', nombre: 'UF'}];
 
   constructor( public http: HttpClient ) { }
 
@@ -63,6 +65,21 @@ export class VmcaService {
 
   traer_actividades(tipo) {
     const url = `${URL_SERVICIOS}vmca/actividades/${tipo}?token=${localStorage.getItem('token')}`;
+    return this.http.get(url);
+  }
+
+  traer_estados_facturacion() {
+    const url = `${URL_SERVICIOS}vmca/estadosfacturacion?token=${localStorage.getItem('token')}`;
+    return this.http.get(url);
+  }
+
+  traer_estados_pago() {
+    const url = `${URL_SERVICIOS}vmca/estadospago?token=${localStorage.getItem('token')}`;
+    return this.http.get(url);
+  }
+
+  traer_estados_proyectos() {
+    const url = `${URL_SERVICIOS}vmca/estadosproyectos?token=${localStorage.getItem('token')}`;
     return this.http.get(url);
   }
 

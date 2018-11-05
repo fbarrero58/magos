@@ -38,11 +38,15 @@ export class CalendarioService {
   }
 
   from_calendar_to_DB(fecha: string) {
+    if (fecha.length <= 1) {return ''; }
     const aux = fecha.split('/');
     return `${aux[2]}-${aux[1]}-${aux[0]}`;
   }
 
   from_DB_to_calendar(fecha: string) {
+    if (fecha === '0000-00-00') {
+      return '';
+    }
     const aux = fecha.split('-');
     return `${aux[2]}/${aux[1]}/${aux[0]}`;
   }

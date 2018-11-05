@@ -59,6 +59,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('usuario', JSON.stringify(resp.usuario));
         this._ls.token = resp.token;
         this._ls.id_usuario = resp.id_usuario;
+        this._ls.rol_usuario = resp.usuario.id_rol;
         this._ls.usuario = resp.usuario;
         this.router.navigate(['/']);
       }

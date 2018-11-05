@@ -13,6 +13,7 @@ export class Usuario {
     correo_personal: string;
     direccion: string;
     fecha_nacimiento: string;
+    fecha_nacimiento_app: string;
     pais_origen: string;
     pais_residencia: string;
     perfil_profesional: string;

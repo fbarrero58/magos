@@ -1,0 +1,143 @@
+<app-cargando [mostrar]="cargando"></app-cargando>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="card ">
+            <div class="card-header card-header-primary card-header-text">
+                <div class="card-text">
+                    <h4 class="card-title">Formulario de Propuestas</h4>
+                </div>
+            </div>
+            <form (ngSubmit)="onSubmit(empresasForm)" #empresasForm="ngForm">
+                <div class="card-body ">
+
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">Estado de Facturación</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select style="width:100%;" [(ngModel)]="condicion.id_estado_facturacion" name="estado_facturacion" id="form_estado_facturacion">
+                                <option *ngFor="let estado of estados_facturacion" [value]="estado.id"> {{ estado.nombre }} </option>
+                              </select>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label">Estado de Pago</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select style="width:100%;" [(ngModel)]="condicion.id_estado_pago" name="id_estado_pago" id="form_estado_pago">
+                                <option *ngFor="let estado of estados_pago" [value]="estado.id"> {{ estado.nombre }} </option>
+                              </select>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label">Porcentaje</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="number" [(ngModel)]="condicion.porcentaje" name="porcentaje" class="form-control" required>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label">Detalle de la condición</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="condicion.detalle_condicion" name="detalle_condicion" class="form-control" placeholder="Ej: Al inicio del proyecto" required>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label">Número de factura</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="condicion.num_factura" name="num_factura" class="form-control">
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label">Total en CLP</label>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <input (input)="cambio_valor($event.target.value, 'total_clp')" type="number" [(ngModel)]="condicion.total_clp" name="total_clp" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            {{condicion.total_clp | currency:'CLP'}}
+                        </div>
+                        <label class="col-sm-2 col-form-label">Total en UF</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input (input)="cambio_valor($event.target.value, 'total_uf')" type="number" [(ngModel)]="condicion.total_uf" name="total_uf" class="form-control">
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label">Valor de UF <small>(en CLP)</small> </label>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <input (input)="cambio_valor($event.target.value, 'valor_uf')" type="number" [(ngModel)]="condicion.valor_uf" name="valor_uf" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            {{condicion.valor_uf | currency:'CLP'}}
+                        </div>
+                        <label class="col-sm-2 col-form-label">Monto Real Pagado</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="condicion.monto_pagado" name="monto_pagado" class="form-control">
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label">Fecha de Facturación</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="condicion.fecha_facturacion_app" name="fecha_facturacion" class="form-control datepicker" id="form_fecha_facturacion">
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label">Número de orden de compra</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="condicion.num_orden_compra" name="num_orden_compra" class="form-control">
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label">Fecha de orden de compra</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="condicion.fecha_orden_compra_app" name="fecha_orden_compra" class="form-control datepicker" id="form_fecha_orden">
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label">Número de HES</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="condicion.hes" name="hes" class="form-control">
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label">Fecha de HES</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="condicion.fecha_hes_app" name="fecha_hes" class="form-control datepicker" id="form_fecha_hes">
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label">Fecha de Pago Real</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="condicion.fecha_pago_real_app" name="fecha_pago_real" class="form-control datepicker" id="form_fecha_real">
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label">Fecha de Pago Estimada</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="condicion.fecha_pago_estimada_app" name="fecha_pago_estimada" class="form-control datepicker" id="form_fecha_estimada">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px;">
+                        <label class="col-sm-2  col-form-label">
+                          Detalles Adicionales
+                        </label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" [(ngModel)]="condicion.detalles_adicionales" name="detalles_adicionales" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row text-right" style="margin-left:30px; margin-bottom: 10px;">
+                        <button type="button" (click)="router.navigate(['/propuestas/condiciones'])" class="btn btn-primary" style="color:white; margin-right:15px">Volver</button>
+                        <button *ngIf="tipo === 'editar'" type="button" (click)="eliminar()" class="btn btn-danger" style="margin-right:15px">Eliminar</button>
+                        <button [disabled]="!empresasForm.form.valid || cargando" class="btn btn-primary">
+                              <i [hidden]="!cargando" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                          Guardar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

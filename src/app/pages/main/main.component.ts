@@ -6,6 +6,7 @@ import { CONFIG_HORAS } from '../../constantes/calendarios';
 import { CalendarioService } from '../../services/calendario.service';
 import { VmcaService } from '../../services/vmca/vmca.service';
 import { GenericoService } from '../../services/generico.service';
+import { LoginService } from '../../services/login/login.service';
 
 // Clases
 import { Evento } from '../../classes/evento';
@@ -29,7 +30,7 @@ export class MainComponent implements OnInit {
     evento = new Evento();
 
   constructor(public _us: UsuarioService, public _cs: CalendarioService, public _vs: VmcaService,
-              public _gs: GenericoService) {
+              public _gs: GenericoService, public _ls: LoginService) {
                 this._gs.nombre_pagina = 'Eventos';
               }
 
@@ -128,6 +129,9 @@ export class MainComponent implements OnInit {
         eventLimit: true,
         events: this.datos_calendario,
         select: (start) => {
+            if ( this._ls.rol_usuario !== '1') {
+              return;
+            }
             this.modo_modal = 'nuevo';
             this.fecha_enviar =  this._cs.format_to_yyyy_mm_dd(( this._cs.sumarDias(start._d, 1).toString()).split(' '));
             this.fecha_mostrar =  this._cs.format_to_nice(this.fecha_enviar);

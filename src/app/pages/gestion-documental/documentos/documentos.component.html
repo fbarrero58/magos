@@ -5,7 +5,7 @@
         <button (click)="volver()" class="btn btn-primary">
             Volver
         </button>
-        <button (click)="nuevo()" class="btn btn-primary">
+        <button *ngIf="_ls.rol_usuario !== '3'" (click)="nuevo()" class="btn btn-primary">
             Nuevo Documento
         </button>
     </div>

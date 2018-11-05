@@ -1,0 +1,15 @@
+<app-cargando [mostrar]="cargando"></app-cargando>
+
+<div class="row">
+    <div class="ml-auto">
+        <div class="col-md-12">
+            <button (click)="router.navigate(['/propuestas/nuevo'])" class="btn btn-primary">
+                Nueva Propuesta
+            </button>
+        </div>
+    </div>
+</div>
+
+<app-tabla *ngIf="datos.length > 0" [titulo]="titulo" [columnas]="columnas" [datos]="datos" (id_redireccion)="recibir_redireccion($event)">
+
+</app-tabla>

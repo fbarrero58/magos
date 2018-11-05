@@ -5,7 +5,7 @@
         <button (click)="router.navigate(['/gestion-documental'])" class="btn btn-primary">
             Volver
         </button>
-        <button (click)="direccionar_nuevo_editar('nuevo')" class="btn btn-primary">
+        <button *ngIf="_ls.rol_usuario !== '3'" (click)="direccionar_nuevo_editar('nuevo')" class="btn btn-primary">
             Nueva Categoria
         </button>
     </div>

@@ -1,6 +1,6 @@
 <app-cargando [mostrar]="cargando"></app-cargando>
 
-<div class="row" [ngClass]="{'animated fadeIn': !cargando, 'ocultar': cargando}">
+<div *ngIf="_ls.rol_usuario === '1'" class="row" [ngClass]="{'animated fadeIn': !cargando, 'ocultar': cargando}">
     <div class="col-md-12 col-sm-12 text-right">
         <button (click)="router.navigate(['/admin/usuarios/form/nuevo'])" class="btn btn-primary">Nuevo Usuario</button>
     </div>

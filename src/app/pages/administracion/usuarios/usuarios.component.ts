@@ -8,6 +8,7 @@ import { ADMIN_USUARIOS } from '../../../constantes/tablas';
 import { UsuarioService } from '../../../services/usuario.service';
 import { VmcaService } from '../../../services/vmca/vmca.service';
 import { CalendarioService } from '../../../services/calendario.service';
+import { LoginService } from '../../../services/login/login.service';
 
 
 declare var $: any;
@@ -22,7 +23,7 @@ export class UsuariosComponent implements OnInit {
   cargando = true;
 
   constructor(public router: Router, public _us: UsuarioService, public _vs: VmcaService,
-              public _cs: CalendarioService) {}
+              public _cs: CalendarioService, public _ls: LoginService) {}
 
   ngOnInit() {
     this.traer_datos();

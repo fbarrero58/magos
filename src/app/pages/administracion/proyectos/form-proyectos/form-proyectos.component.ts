@@ -94,14 +94,14 @@ export class FormProyectosComponent implements OnInit {
       });
     } else { this.lineas = this._vs.lineas_servicio; }
 
-    // Cargar Estados Comerciales
-    if (this._vs.estados_comerciales.length === 0) {
-      this._vs.traer_estados_comerciales().subscribe((resp: any) => {
-        this._vs.estados_comerciales = resp.estados;
-        this.estados = this._vs.estados_comerciales;
+    // Cargar Estados Proyectos
+    if (this._vs.estados_proyectos.length === 0) {
+      this._vs.traer_estados_proyectos().subscribe((resp: any) => {
+        this._vs.estados_proyectos = resp.estados;
+        this.estados = this._vs.estados_proyectos;
         this.cargando = false;
       });
-    } else { this.estados = this._vs.estados_comerciales; this.cargando = false; }
+    } else { this.estados = this._vs.estados_proyectos; this.cargando = false; }
 
   }
 

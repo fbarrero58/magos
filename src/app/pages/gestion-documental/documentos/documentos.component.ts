@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 // Servicios
 import { DocumentosService } from '../../../services/documentos/documentos.service';
 import { GenericoService } from '../../../services/generico.service';
+import { LoginService } from '../../../services/login/login.service';
 
 // Clases
 import { Temas } from '../../../classes/temas';
@@ -30,7 +31,7 @@ export class DocumentosComponent implements OnInit {
   cargando = true;
 
   constructor(public router: Router, public activatedRoute: ActivatedRoute, public _ds: DocumentosService,
-              public _gs: GenericoService) {
+              public _gs: GenericoService, public _ls: LoginService) {
 
     if (!this._ds.categoria_seleccionada || !this._ds.tema_seleccionado) {
       this.router.navigate(['/gestion-documental']);
@@ -43,7 +44,9 @@ export class DocumentosComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    if (this._ls.rol_usuario === '3') {
+      this.columnas.splice(-1, 1);
+    }
     this.activatedRoute.params.subscribe(resp => {
       this.id_tema = resp['tema'];
       this.id_categoria = resp['categoria'];

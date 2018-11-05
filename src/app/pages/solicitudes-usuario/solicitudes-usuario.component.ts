@@ -48,10 +48,11 @@ export class SolicitudesUsuarioComponent implements OnInit {
       aux_datos.push(e.nombre_aprobador);
       aux_datos.push(e.estado);
       aux_datos.push(e.fecha_permiso);
-      aux_datos.push(`<button value="${e.id}" class="btn btn-primary btn-sm btn-link detalles">Ver detalles</button>`);
+      aux_datos.push(`<button value='${JSON.stringify(e)}' class="btn btn-primary btn-sm btn-link detalles">Ver detalles</button>`);
       datos_tabla.push(aux_datos);
       aux_datos = [];
     });
+
     this.datos[0].datos = datos_tabla;
     datos_tabla = [];
     this.vacaciones.forEach(e => {
@@ -61,7 +62,7 @@ export class SolicitudesUsuarioComponent implements OnInit {
       aux_datos.push(e.estado);
       aux_datos.push(e.desde);
       aux_datos.push(e.hasta);
-      aux_datos.push(`<button value="${e.id}" class="btn btn-primary btn-sm btn-link detalles">Ver detalles</button>`);
+      aux_datos.push(`<button value='${JSON.stringify(e)}' class="btn btn-primary btn-sm btn-link detalles">Ver detalles</button>`);
       datos_tabla.push(aux_datos);
       aux_datos = [];
     });
@@ -73,7 +74,7 @@ export class SolicitudesUsuarioComponent implements OnInit {
       aux_datos.push(e.estado);
       aux_datos.push(e.fecha_otros);
       aux_datos.push(e.motivo);
-      aux_datos.push(`<button value="${e.id}" class="btn btn-primary btn-sm btn-link detalles">Ver detalles</button>`);
+      aux_datos.push(`<button value='${JSON.stringify(e)}' class="btn btn-primary btn-sm btn-link detalles">Ver detalles</button>`);
       datos_tabla.push(aux_datos);
       aux_datos = [];
     });
@@ -97,6 +98,12 @@ export class SolicitudesUsuarioComponent implements OnInit {
           columns: e.columnas,
           destroy: true
       });
+
+      $(`#${e.id_tabla}`).on('click', '.detalles', (e2) => {
+        this._ss.solicitud_seleccionada = JSON.parse(e2.target.value);
+        this.router.navigate(['/solicitudes/editar']);
+      });
+
     });
 
   }

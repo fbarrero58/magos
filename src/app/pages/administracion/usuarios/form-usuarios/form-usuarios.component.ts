@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 // Servicios
 import { VmcaService } from '../../../../services/vmca/vmca.service';
 import { UsuarioService } from '../../../../services/usuario.service';
+import { LoginService } from '../../../../services/login/login.service';
 
 // Clases
 import { Usuario } from '../../../../classes/usuario';
@@ -27,7 +28,7 @@ export class FormUsuariosComponent implements OnInit {
   roles: Vmca[] = [];
 
   constructor(public router: Router, public activeRoute: ActivatedRoute, public _vs: VmcaService,
-              public _us: UsuarioService) {
+              public _us: UsuarioService, public _ls: LoginService) {
 
     if (this._us.usuarios.length === 0) {
       this.router.navigate(['/admin/usuarios']);

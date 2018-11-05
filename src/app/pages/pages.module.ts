@@ -21,6 +21,10 @@ import { FormCategoriasComponent } from './gestion-documental/categorias/form-ca
 import { FormDocumentosComponent } from './gestion-documental/documentos/form-documentos/form-documentos.component';
 import { SolicitudesUsuarioComponent } from './solicitudes-usuario/solicitudes-usuario.component';
 import { FormSolicitudesComponent } from './solicitudes-usuario/form-solicitudes/form-solicitudes.component';
+import { PropuestasComponent } from './propuestas/propuestas.component';
+import { FormPropuestasComponent } from './propuestas/form-propuestas/form-propuestas.component';
+import { CondicionesComponent } from './propuestas/condiciones/condiciones.component';
+import { FormCondicionesComponent } from './propuestas/condiciones/form-condiciones/form-condiciones.component';
 
 @NgModule({
     declarations: [
@@ -34,7 +38,11 @@ import { FormSolicitudesComponent } from './solicitudes-usuario/form-solicitudes
         FormCategoriasComponent,
         FormDocumentosComponent,
         SolicitudesUsuarioComponent,
-        FormSolicitudesComponent
+        FormSolicitudesComponent,
+        PropuestasComponent,
+        FormPropuestasComponent,
+        CondicionesComponent,
+        FormCondicionesComponent
     ],
     imports: [
         CommonModule,

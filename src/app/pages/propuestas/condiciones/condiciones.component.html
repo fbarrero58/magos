@@ -1,0 +1,24 @@
+<app-cargando [mostrar]="cargando"></app-cargando>
+
+<div class="row">
+    <div class="ml-auto">
+        <div class="col-md-12">
+            <button (click)="router.navigate(['/propuestas'])" class="btn btn-primary">
+                Volver
+            </button>
+            <button (click)="router.navigate(['/propuestas/condiciones/nuevo'])" class="btn btn-primary">
+                Nueva Condición
+            </button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!cargando && datos.length === 0" class="row alert alert-warning" style="margin-top:20px;">
+    <div class="col-md-12 text-center">
+        <h4>Aún no se ha registrado ningúna condición para esta propuesta</h4>
+    </div>
+</div>
+
+<app-tabla *ngIf="datos.length > 0" [titulo]="titulo" [columnas]="columnas" [datos]="datos" (id_redireccion)="recibir_redireccion($event)">
+
+</app-tabla>

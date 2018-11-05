@@ -22,6 +22,13 @@ import { FormDocumentosComponent } from './gestion-documental/documentos/form-do
 import { SolicitudesUsuarioComponent } from './solicitudes-usuario/solicitudes-usuario.component';
 import { FormSolicitudesComponent } from './solicitudes-usuario/form-solicitudes/form-solicitudes.component';
 import { DetalleSolicitudComponent } from './administracion/solicitudes/detalle-solicitud/detalle-solicitud.component';
+import { PropuestasComponent } from './propuestas/propuestas.component';
+import { AdminComponent } from './administracion/admin.component';
+import { FormPropuestasComponent } from './propuestas/form-propuestas/form-propuestas.component';
+import { CondicionesComponent } from './propuestas/condiciones/condiciones.component';
+import { FormCondicionesComponent } from './propuestas/condiciones/form-condiciones/form-condiciones.component';
+import { AdminGuard } from '../services/guards/admin.guard';
+import { GerenteGuard } from '../services/guards/gerente.guard';
 
 const pagesRoutes: Routes = [
     {
@@ -32,7 +39,11 @@ const pagesRoutes: Routes = [
             {path: 'main', component: MainComponent},
             {path: 'registro-horas', component: RegistroHorasComponent},
             {path: 'solicitudes', component: SolicitudesUsuarioComponent},
-            {path: 'solicitudes/nuevo', component: FormSolicitudesComponent},
+            {path: 'solicitudes/:tipo', component: FormSolicitudesComponent},
+            {path: 'propuestas', canActivate: [ AdminGuard ], component: PropuestasComponent},
+            {path: 'propuestas/condiciones', canActivate: [ AdminGuard ], component: CondicionesComponent},
+            {path: 'propuestas/condiciones/:tipo', canActivate: [ AdminGuard ], component: FormCondicionesComponent},
+            {path: 'propuestas/:tipo', canActivate: [ AdminGuard ], component: FormPropuestasComponent},
             // Gestión Documental
             {path: 'gestion-documental', component: GestionDocumentalComponent},
             {path: 'gestion-documental/nuevo', component: FormGestionComponent},
@@ -46,18 +57,25 @@ const pagesRoutes: Routes = [
             // Perfil
             {path: 'pefil/info-personal', component: InfoPersonalComponent},
             // Administración
-            {path: 'admin/usuarios', component: UsuariosComponent},
-            {path: 'admin/usuarios/form/:tipo', component: FormUsuariosComponent},
-            {path: 'admin/usuarios/form/:tipo/:id', component: FormUsuariosComponent},
-            {path: 'admin/solicitudes', component: SolicitudesComponent},
-            {path: 'admin/solicitudes/detalle', component: DetalleSolicitudComponent},
-            {path: 'admin/proyectos', component: ProyectosComponent},
-            {path: 'admin/proyectos/form/:tipo', component: FormProyectosComponent},
-            {path: 'admin/proyectos/form/:tipo/:id', component: FormProyectosComponent},
-            {path: 'admin/empresas', component: EmpresasComponent},
-            {path: 'admin/empresas/form/:tipo', component: FormEmpresasComponent},
-            {path: 'admin/empresas/form/:tipo/:id', component: FormEmpresasComponent},
-            {path: 'admin/alianzas', component: AlianzasComponent},
+            {
+                path: 'admin',
+                component: AdminComponent,
+                canActivate: [ AdminGuard ],
+                children: [
+                    {path: 'usuarios', component: UsuariosComponent},
+                    {path: 'usuarios/form/:tipo', canActivate: [ GerenteGuard ], component: FormUsuariosComponent},
+                    {path: 'usuarios/form/:tipo/:id', component: FormUsuariosComponent},
+                    {path: 'solicitudes', component: SolicitudesComponent},
+                    {path: 'solicitudes/detalle', component: DetalleSolicitudComponent},
+                    {path: 'proyectos', component: ProyectosComponent},
+                    {path: 'proyectos/form/:tipo', component: FormProyectosComponent},
+                    {path: 'proyectos/form/:tipo/:id', component: FormProyectosComponent},
+                    {path: 'empresas', component: EmpresasComponent},
+                    {path: 'empresas/form/:tipo', component: FormEmpresasComponent},
+                    {path: 'empresas/form/:tipo/:id', component: FormEmpresasComponent},
+                    {path: 'alianzas', component: AlianzasComponent},
+                ]
+            },
             {path: '', redirectTo: '/main', pathMatch: 'full'},
         ]
     },

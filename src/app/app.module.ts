@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
 import { ServiceModule } from './services/services.module';
+import { AdminComponent } from './pages/administracion/admin.component';
 
 
 
@@ -21,6 +22,7 @@ import { ServiceModule } from './services/services.module';
   declarations: [
     AppComponent,
     LoginComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

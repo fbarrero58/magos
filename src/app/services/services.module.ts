@@ -16,6 +16,8 @@ import { HorasService } from './horas/horas.service';
 import { DocumentosService } from './documentos/documentos.service';
 import { GenericoService } from './generico.service';
 import { SolicitudesService } from './solicitudes/solicitudes.service';
+import { PropuestasService } from './propuestas/propuestas.service';
+import { AdminGuard } from './guards/admin.guard';
 
 @NgModule({
     declarations: [],
@@ -36,7 +38,9 @@ import { SolicitudesService } from './solicitudes/solicitudes.service';
         HorasService,
         DocumentosService,
         GenericoService,
-        SolicitudesService
+        SolicitudesService,
+        PropuestasService,
+        AdminGuard
     ]
 })
 

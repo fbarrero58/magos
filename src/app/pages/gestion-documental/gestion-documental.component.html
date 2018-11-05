@@ -1,6 +1,6 @@
 <app-cargando [mostrar]="cargando"></app-cargando>
 
-<div class="row">
+<div class="row" *ngIf="_ls.rol_usuario !== '3'">
     <div class="ml-auto">
         <div class="col-md-12">
             <button (click)="router.navigate(['/gestion-documental/nuevo'])" class="btn btn-primary">

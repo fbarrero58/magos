@@ -1,6 +1,6 @@
 import { UsuarioService } from '../../../services/usuario.service';
 import { VmcaService } from '../../../services/vmca/vmca.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { GenericoService } from '../../../services/generico.service';
 import { Solicitud } from '../../../classes/solicitud';
@@ -22,9 +22,24 @@ export class FormSolicitudesComponent implements OnInit {
   tipo_seleccionado = '';
   aprobadores: Vmca[] = [];
   tipos_otros: Vmca[] = [];
+  tipo_formulario;
 
   constructor( public _gs: GenericoService, public router: Router, public _vs: VmcaService,
-              public _us: UsuarioService, public _ss: SolicitudesService ) {
+              public _us: UsuarioService, public _ss: SolicitudesService, public _ar: ActivatedRoute) {
+
+        this._ar.params.subscribe(resp => {
+          this.tipo_formulario = resp['tipo'];
+          if (this.tipo_formulario === 'editar' && !this._ss.solicitud_seleccionada) {
+            this.router.navigate(['/solicitudes']);
+          } else {
+            this.tipo_seleccionado = this._ss.solicitud_seleccionada.tipo_solicitud.toLowerCase();
+            this.solicitud = this._ss.solicitud_seleccionada;
+            if (this.tipo_seleccionado === 'permiso') {
+              this.solicitud.horas_permiso = this.solicitud.horas;
+            }
+          }
+        });
+
     this._gs.nombre_pagina = 'Formulario de Solicitudes';
   }
 

@@ -9,6 +9,8 @@ import { CalendarioService } from '../calendario.service';
 })
 export class SolicitudesService {
 
+  solicitud_seleccionada: Solicitud;
+
   constructor(public http: HttpClient, public _cs: CalendarioService) { }
 
   traer_tipos_otros() {

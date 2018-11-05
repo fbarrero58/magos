@@ -67,7 +67,7 @@
                             <i [hidden]="!cargando" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
                             Guardar
                         </button>
-                        <button [hidden]="modo_modal === 'nuevo'" [disabled]="cargando" type="submit" class="btn btn-danger" [disabled]="!eventoForm.form.valid">
+                        <button *ngIf="_ls.rol_usuario === '1'" [hidden]="modo_modal === 'nuevo'" [disabled]="cargando" type="submit" class="btn btn-danger" [disabled]="!eventoForm.form.valid">
                             <i [hidden]="!cargando" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
                             Eliminar
                         </button>
