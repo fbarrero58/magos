@@ -5,6 +5,7 @@ import { VmcaService } from 'src/app/services/vmca/vmca.service';
 import { Vmca } from '../../../../classes/vmca';
 import { PropuestasService } from 'src/app/services/propuestas/propuestas.service';
 import { CalendarioService } from '../../../../services/calendario.service';
+import { GenericoService } from '../../../../services/generico.service';
 
 declare var $, md: any;
 declare function swal(string): any;
@@ -23,7 +24,7 @@ export class FormCondicionesComponent implements OnInit {
   tipo = '';
 
   constructor( public router: Router, public _vs: VmcaService, public _ps: PropuestasService,
-              public _cs: CalendarioService, public _ar: ActivatedRoute) {
+              public _cs: CalendarioService, public _ar: ActivatedRoute, public _gs: GenericoService) {
 
     if ( !this._ps.propuesta_seleccionada ) {
       this.router.navigate(['/propuestas']);
@@ -46,6 +47,7 @@ export class FormCondicionesComponent implements OnInit {
         this.condicion.valor_uf = 0;
       }
     });
+    this._gs.nombre_pagina = 'Formulario condiciones';
    }
 
   ngOnInit() {

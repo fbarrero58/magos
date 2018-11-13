@@ -6,6 +6,7 @@ import { VmcaService } from '../../../services/vmca/vmca.service';
 import { Router, ActivatedRoute } from '@angular/router/';
 import { PropuestasService } from '../../../services/propuestas/propuestas.service';
 import { CalendarioService } from '../../../services/calendario.service';
+import { GenericoService } from 'src/app/services/generico.service';
 
 declare var $, md: any;
 declare function swal(string, algo?: any): any;
@@ -24,7 +25,7 @@ export class FormPropuestasComponent implements OnInit {
   estados_comerciales: Vmca[];
 
   constructor( public _ps: ProyectoService, public _vs: VmcaService, public router: Router, public _prs: PropuestasService,
-                public _cs: CalendarioService, public _ar: ActivatedRoute ) {
+                public _cs: CalendarioService, public _ar: ActivatedRoute, public _gs: GenericoService ) {
 
           this._ar.params.subscribe(resp => {
             this.tipo = resp['tipo'];
@@ -36,6 +37,8 @@ export class FormPropuestasComponent implements OnInit {
               this.propuesta.fecha_vendida_app = this._cs.from_DB_to_calendar(this.propuesta.fecha_vendida);
             }
           });
+
+          this._gs.nombre_pagina = 'Formulario propuestas';
     }
 
   ngOnInit() {

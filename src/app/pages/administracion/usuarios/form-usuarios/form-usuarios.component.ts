@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+// Clases
+import { Usuario } from '../../../../classes/usuario';
+import { Vmca } from '../../../../classes/vmca';
+
 // Servicios
 import { VmcaService } from '../../../../services/vmca/vmca.service';
 import { UsuarioService } from '../../../../services/usuario.service';
 import { LoginService } from '../../../../services/login/login.service';
-
-// Clases
-import { Usuario } from '../../../../classes/usuario';
-import { Vmca } from '../../../../classes/vmca';
+import { GenericoService } from 'src/app/services/generico.service';
 
 declare var md, $: any;
 declare function swal(string): any;
@@ -28,7 +29,7 @@ export class FormUsuariosComponent implements OnInit {
   roles: Vmca[] = [];
 
   constructor(public router: Router, public activeRoute: ActivatedRoute, public _vs: VmcaService,
-              public _us: UsuarioService, public _ls: LoginService) {
+              public _us: UsuarioService, public _ls: LoginService, public _gs: GenericoService) {
 
     if (this._us.usuarios.length === 0) {
       this.router.navigate(['/admin/usuarios']);
@@ -45,6 +46,8 @@ export class FormUsuariosComponent implements OnInit {
         });
       }
     });
+
+    this._gs.nombre_pagina = 'Formulario de Usuarios';
 
   }
 

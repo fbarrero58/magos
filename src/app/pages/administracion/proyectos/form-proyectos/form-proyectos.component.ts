@@ -12,6 +12,8 @@ import { EmpresaService } from '../../../../services/empresa/empresa.service';
 import { VmcaService } from '../../../../services/vmca/vmca.service';
 import { AlianzaService } from '../../../../services/alianza/alianza.service';
 import { ProyectoService } from '../../../../services/proyecto/proyecto.service';
+import { CalendarioService } from 'src/app/services/calendario.service';
+import { GenericoService } from 'src/app/services/generico.service';
 
 declare var md, $: any;
 declare function swal(string): any;
@@ -35,7 +37,8 @@ export class FormProyectosComponent implements OnInit {
   id_form = '';
 
   constructor(public router: Router, public _es: EmpresaService, public _vs: VmcaService,
-              public _as: AlianzaService, public _ps: ProyectoService, public activeRoute: ActivatedRoute) {
+              public _as: AlianzaService, public _ps: ProyectoService, public activeRoute: ActivatedRoute,
+              public _cs: CalendarioService, public _gs: GenericoService) {
 
         if (this._ps.proyectos.length === 0) {
           this.router.navigate(['/admin/proyectos']);
@@ -48,10 +51,14 @@ export class FormProyectosComponent implements OnInit {
             this._ps.proyectos.filter( (e) => {
               if (e.id === this.id_form) {
                 this.proyecto = e;
+                this.proyecto.inicio_app = this.proyecto.inicio;
+                this.proyecto.fin_app = this.proyecto.fin;
               }
             });
           }
         });
+
+        this._gs.nombre_pagina = 'Formuarlio de Proyectos';
 
   }
 
@@ -165,6 +172,7 @@ export class FormProyectosComponent implements OnInit {
         showConfirmButton: true
       });
       this.cargando = false;
+      this.router.navigate(['/admin/proyectos']);
   }
 
 }

@@ -4,6 +4,8 @@ export class Proyecto {
     nombre: string;
     codigo: string;
     inicio: string;
+    inicio_app: string;
+    fin_app: string;
     fin: string;
     empresa: string;
     tipo: string;

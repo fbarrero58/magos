@@ -4,7 +4,7 @@ import { PropuestasService } from '../../../services/propuestas/propuestas.servi
 import { Condicion } from '../../../classes/condicion';
 import { VmcaService } from 'src/app/services/vmca/vmca.service';
 import { Vmca } from '../../../classes/vmca';
-import { text } from '@angular/core/src/render3/instructions';
+import { GenericoService } from 'src/app/services/generico.service';
 
 @Component({
   selector: 'app-condiciones',
@@ -27,9 +27,11 @@ export class CondicionesComponent implements OnInit {
   estados_facturacion: Vmca[] = [];
   estados_pago: Vmca[] = [];
 
-  constructor( public router: Router, public _ps: PropuestasService, public _vs: VmcaService ) {
+  constructor( public router: Router, public _ps: PropuestasService, public _vs: VmcaService,
+              public _gs: GenericoService ) {
     if (!this._ps.propuesta_seleccionada) { this.router.navigate(['/propuestas']);
-    } else {this.titulo = this.titulo + this._ps.propuesta_seleccionada.nombre; }
+    } else {this.titulo = this.titulo + this._ps.propuesta_seleccionada.nombre;
+            this._gs.nombre_pagina = 'Condiciones - ' + this._ps.propuesta_seleccionada.nombre; }
   }
 
   ngOnInit() {

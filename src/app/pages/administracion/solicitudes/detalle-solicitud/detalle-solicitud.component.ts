@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router/';
 import { ActivatedRoute } from '@angular/router';
 import { Solicitud } from '../../../../classes/solicitud';
+
+// Servicios
 import { CalendarioService } from '../../../../services/calendario.service';
 import { SolicitudesService } from '../../../../services/solicitudes/solicitudes.service';
+import { GenericoService } from '../../../../services/generico.service';
 
 declare function swal(string): any;
 
@@ -19,7 +22,9 @@ export class DetalleSolicitudComponent implements OnInit {
   tipo_seleccionado = '';
 
   constructor( public router: Router, public ar: ActivatedRoute, public _cs: CalendarioService,
-                public _ss: SolicitudesService ) { }
+                public _ss: SolicitudesService, public _gs: GenericoService ) {
+                  this._gs.nombre_pagina = 'Detalle de Solicitud';
+                }
 
   ngOnInit() {
     this.armar_datos();

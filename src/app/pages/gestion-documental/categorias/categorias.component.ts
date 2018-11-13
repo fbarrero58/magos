@@ -37,9 +37,8 @@ export class CategoriasComponent implements OnInit {
       this.router.navigate(['/gestion-documental']);
     } else {
       this.titulo = `Categorias para ${this._ds.tema_seleccionado.nombre}`;
+      this._gs.nombre_pagina = 'Categorias de ' + this._ds.tema_seleccionado.nombre;
     }
-
-    this._gs.nombre_pagina = 'Categorias de Temas';
   }
 
   ngOnInit() {
@@ -64,7 +63,7 @@ export class CategoriasComponent implements OnInit {
         aux_datos.push(e.nombre);
         aux_datos.push(e.descripcion);
         aux_datos.push(`<button value="${e.id}" class="btn btn-primary btn-sm btn-link detalles">Ver Documentos</button>`);
-        if (this._ls.rol_usuario === '3') {
+        if (this._ls.rol_usuario !== '3') {
           aux_datos.push(`<button value="${e.id}" class="btn btn-warning btn-sm btn-link editar">Editar</div></button>`);
         }
         datos_tabla.push(aux_datos);

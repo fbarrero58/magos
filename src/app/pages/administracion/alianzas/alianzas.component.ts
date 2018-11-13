@@ -8,6 +8,7 @@ import { Alianza } from '../../../classes/alianza';
 
 // Servicios
 import { AlianzaService } from '../../../services/alianza/alianza.service';
+import { GenericoService } from '../../../services/generico.service';
 
 declare var $: any;
 declare function swal(string): any;
@@ -22,7 +23,9 @@ export class AlianzasComponent implements OnInit {
   alianza = new Alianza('', '', '');
   cargando = true;
 
-  constructor(public _al: AlianzaService) { }
+  constructor(public _al: AlianzaService, public _gs: GenericoService) {
+    this._gs.nombre_pagina = 'Administración de Alianzas';
+  }
 
   ngOnInit() {
     this.traer_datos();

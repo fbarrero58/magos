@@ -2,13 +2,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+// Clases
+import { Temas } from '../../../classes/temas';
+
 // Servicios
 import { DocumentosService } from '../../../services/documentos/documentos.service';
 import { GenericoService } from '../../../services/generico.service';
 import { LoginService } from '../../../services/login/login.service';
-
-// Clases
-import { Temas } from '../../../classes/temas';
 
 @Component({
   selector: 'app-documentos',
@@ -37,9 +37,8 @@ export class DocumentosComponent implements OnInit {
       this.router.navigate(['/gestion-documental']);
     } else {
        this.titulo = `Documentos para ${this._ds.categoria_seleccionada.nombre}`;
+       this._gs.nombre_pagina = `Documentos - ${this._ds.categoria_seleccionada.nombre} - ${this._ds.tema_seleccionado.nombre}`;
     }
-
-    this._gs.nombre_pagina = 'Documentos';
 
   }
 
@@ -64,7 +63,9 @@ export class DocumentosComponent implements OnInit {
         aux_datos.push(e.nombre);
         aux_datos.push(e.descripcion);
         aux_datos.push(`<a href="${e.url}" target="_blank" class="btn btn-primary btn-link">Descargar</a>`);
-        aux_datos.push(`<button value="${e.id}" class="btn btn-warning btn-link editar">Editar</button>`);
+        if (this._ls.rol_usuario !== '3') {
+          aux_datos.push(`<button value="${e.id}" class="btn btn-warning btn-link editar">Editar</button>`);
+        }
         datos_tabla.push(aux_datos);
         aux_datos = [];
       });

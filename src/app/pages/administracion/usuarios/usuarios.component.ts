@@ -9,6 +9,7 @@ import { UsuarioService } from '../../../services/usuario.service';
 import { VmcaService } from '../../../services/vmca/vmca.service';
 import { CalendarioService } from '../../../services/calendario.service';
 import { LoginService } from '../../../services/login/login.service';
+import { GenericoService } from 'src/app/services/generico.service';
 
 
 declare var $: any;
@@ -23,7 +24,9 @@ export class UsuariosComponent implements OnInit {
   cargando = true;
 
   constructor(public router: Router, public _us: UsuarioService, public _vs: VmcaService,
-              public _cs: CalendarioService, public _ls: LoginService) {}
+              public _cs: CalendarioService, public _ls: LoginService, public _gs: GenericoService) {
+                this._gs.nombre_pagina = 'Administración de Usuarios';
+              }
 
   ngOnInit() {
     this.traer_datos();

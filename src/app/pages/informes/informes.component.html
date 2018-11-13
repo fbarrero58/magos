@@ -1,0 +1,131 @@
+<div class="card">
+    <div class="card-header">
+
+        <ul class="nav nav-pills card-header-pills" style="margin-top: 10px;">
+            <li class="nav-item">
+                <a class="nav-link active" href="#horas" data-toggle="tab">Horas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#proyectos" data-toggle="tab">Proyectos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#solicitudes" data-toggle="tab">Solicitudes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#propuestas" data-toggle="tab">Propuestas</a>
+            </li>
+        </ul>
+
+    </div>
+    <div class="card-body ">
+        <div class="tab-content">
+            <!-- Informe de horas -->
+            <div class="tab-pane active" id="horas">
+                <h3 class="card-header" style="margin-top: 0; padding-top: 0">Reporte de Horas</h3>
+                <p style="padding-left: 20px">Dejar los filtros vacios si no quiere aplicarlos</p>
+                <form (ngSubmit)="onSubmit(horasForm)" #horasForm="ngForm">
+                    <div class="row" style="margin-top: 5px">
+                        <label class="col-sm-2 col-form-label"> Proyectos </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select style="width:100%" name="proyectos[]" multiple="multiple" id="horas_proyectos">
+                                <option *ngFor="let proyecto of proyectos" [value]="proyecto.id">{{ proyecto.nombre }}</option>
+                            </select>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> Consultores </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select style="width:100%" name="consultores[]" multiple="multiple" id="horas_consultores">
+                                <option *ngFor="let consultor of consultores" [value]="consultor.id">{{consultor.nombres}} {{consultor.apellidos}}</option>
+                            </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 5px">
+                        <label class="col-sm-2 col-form-label"> Desde </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" class="form-control datepicker" id="horas_desde">
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> Hasta </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" class="form-control datepicker" id="horas_hasta">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center" style="margin-top: 10px;">
+                        <button type="submit" class="btn btn-primary">
+                          <i class="material-icons">cloud_download</i> Descargar
+                      </button>
+                    </div>
+                </form>
+            </div>
+            <!-- Informe de Proyectos -->
+            <div class="tab-pane" id="proyectos">
+                <h3 class="card-header" style="margin-top: 0; padding-top: 0">Reporte de Proyectos</h3>
+                <p style="padding-left: 20px">Dejar los filtros vacios si no quiere aplicarlos</p>
+                <form (ngSubmit)="onSubmitProyectos()" #proyectosForm="ngForm">
+                    <div class="row" style="margin-top: 5px">
+                        <label class="col-sm-2 col-form-label"> Clientes </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select style="width:100%" name="clientes[]" multiple="multiple">
+                                <option *ngFor="let cliente of clientes" [value]="cliente.id">{{ cliente.nombre }}</option>
+                            </select>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> Servicios </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select style="width:100%" name="servicios[]" multiple="multiple">
+                                <option *ngFor="let servicio of servicios" [value]="servicio.id">{{servicio.nombre}}</option>
+                            </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 5px">
+                        <label class="col-sm-2 col-form-label"> Estado </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select style="width:100%" name="estados[]" multiple="multiple">
+                                <option *ngFor="let estado of estados" [value]="estado.id">{{estado.nombre}}</option>
+                            </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center" style="margin-top: 10px;">
+                        <button type="submit" class="btn btn-primary">
+                          <i class="material-icons">cloud_download</i> Descargar
+                      </button>
+                    </div>
+                </form>
+            </div>
+            <!-- Informe Solicitudes -->
+            <div class="tab-pane" id="solicitudes">
+                <h3 class="card-header" style="margin-top: 0; padding-top: 0">Reporte de Solicitudes</h3>
+                <form (ngSubmit)="onSubmitSolicitudes()" #solicitudesForm="ngForm">
+                    <div class="row" style="margin-top: 5px">
+                        <label class="col-sm-2 col-form-label"> Tipo de Solicitud </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select style="width:100%" name="tipo_solicitud" id="solicitud_tipo">
+                                <option *ngFor="let tipo of tipos_solicitud" [value]="tipo.id">{{ tipo.nombre }}</option>
+                            </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="text-center" style="margin-top: 10px;">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="material-icons">cloud_download</i> Descargar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,9 +1,16 @@
-import { CalendarioService } from '../../../services/calendario.service';
-import { ADMIN_SOLICITUDES } from '../../../constantes/tablas';
+// Configuración
 import { Component, OnInit } from '@angular/core';
-import { SolicitudesService } from '../../../services/solicitudes/solicitudes.service';
-import { Solicitud } from '../../../classes/solicitud';
 import { Router } from '@angular/router';
+import { ADMIN_SOLICITUDES } from '../../../constantes/tablas';
+
+// Clases
+import { Solicitud } from '../../../classes/solicitud';
+
+// Servicios
+import { SolicitudesService } from '../../../services/solicitudes/solicitudes.service';
+import { CalendarioService } from '../../../services/calendario.service';
+import { GenericoService } from '../../../services/generico.service';
+
 declare var $: any;
 
 @Component({
@@ -22,7 +29,10 @@ export class SolicitudesComponent implements OnInit {
   otros: Solicitud[];
   pendientes: Solicitud[] = [];
 
-  constructor(public _ss: SolicitudesService, public _cs: CalendarioService, public router: Router) { }
+  constructor(public _ss: SolicitudesService, public _cs: CalendarioService, public router: Router,
+              public _gs: GenericoService) {
+                this._gs.nombre_pagina = 'Administración de Solicitudes';
+              }
 
   ngOnInit() {
 

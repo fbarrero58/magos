@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+// Clases
+import { Empresa } from '../../../../classes/empresa';
+
 // Servicios
 import { EmpresaService } from '../../../../services/empresa/empresa.service';
 import { VmcaService } from '../../../../services/vmca/vmca.service';
-
-// Clases
-import { Empresa } from '../../../../classes/empresa';
+import { GenericoService } from 'src/app/services/generico.service';
 
 declare var $: any;
 declare function swal(string): any;
@@ -24,7 +25,7 @@ export class FormEmpresasComponent implements OnInit {
   cargando = true;
 
   constructor(public router: Router, public _es: EmpresaService, public _vs: VmcaService,
-              public activeRoute: ActivatedRoute) {
+              public activeRoute: ActivatedRoute, public _gs: GenericoService) {
 
       if (this._es.empresas.length === 0) {
         this.router.navigate(['/admin/empresas']);
@@ -41,6 +42,8 @@ export class FormEmpresasComponent implements OnInit {
           });
         }
       });
+
+      this._gs.nombre_pagina = 'Formulario de Empresas';
 
     }
 

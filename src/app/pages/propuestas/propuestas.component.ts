@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { PropuestasService } from 'src/app/services/propuestas/propuestas.service';
 import { Propuesta } from 'src/app/classes/propuesta';
 import { CalendarioService } from '../../services/calendario.service';
+import { GenericoService } from 'src/app/services/generico.service';
 
 @Component({
   selector: 'app-propuestas',
@@ -22,7 +23,10 @@ export class PropuestasComponent implements OnInit {
   datos = [];
   propuestas: Propuesta[];
 
-  constructor( public router: Router, public _ps: PropuestasService, public _cs: CalendarioService ) { }
+  constructor( public router: Router, public _ps: PropuestasService, public _cs: CalendarioService,
+                public _gs: GenericoService ) {
+                  this._gs.nombre_pagina = 'Propuestas';
+                }
 
   ngOnInit() {
     this._ps.propuesta_seleccionada = new Propuesta();

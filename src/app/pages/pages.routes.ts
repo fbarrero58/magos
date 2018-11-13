@@ -29,6 +29,7 @@ import { CondicionesComponent } from './propuestas/condiciones/condiciones.compo
 import { FormCondicionesComponent } from './propuestas/condiciones/form-condiciones/form-condiciones.component';
 import { AdminGuard } from '../services/guards/admin.guard';
 import { GerenteGuard } from '../services/guards/gerente.guard';
+import { InformesComponent } from './informes/informes.component';
 
 const pagesRoutes: Routes = [
     {
@@ -38,6 +39,7 @@ const pagesRoutes: Routes = [
         children: [
             {path: 'main', component: MainComponent},
             {path: 'registro-horas', component: RegistroHorasComponent},
+            {path: 'informes', component: InformesComponent},
             {path: 'solicitudes', component: SolicitudesUsuarioComponent},
             {path: 'solicitudes/:tipo', component: FormSolicitudesComponent},
             {path: 'propuestas', canActivate: [ AdminGuard ], component: PropuestasComponent},

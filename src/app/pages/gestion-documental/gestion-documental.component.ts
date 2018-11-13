@@ -51,7 +51,7 @@ export class GestionDocumentalComponent implements OnInit {
         aux_datos.push(e.nombre);
         aux_datos.push(e.descripcion);
         aux_datos.push(`<button value="${e.id}" class="btn btn-primary btn-sm btn-link detalles">Ver categorias</button>`);
-        if (this._ls.rol_usuario === '3') {
+        if (this._ls.rol_usuario !== '3') {
           aux_datos.push(`<button value="${e.id}" class="btn btn-warning btn-sm btn-link editar">Editar</button>`);
         }
         datos_tabla.push(aux_datos);

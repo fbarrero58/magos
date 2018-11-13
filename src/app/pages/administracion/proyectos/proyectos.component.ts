@@ -6,6 +6,7 @@ import { ADMIN_PROYECTOS } from '../../../constantes/tablas';
 // Servicios
 import { ProyectoService } from '../../../services/proyecto/proyecto.service';
 import { CalendarioService } from '../../../services/calendario.service';
+import { GenericoService } from '../../../services/generico.service';
 
 declare var $: any;
 
@@ -18,7 +19,10 @@ export class ProyectosComponent implements OnInit {
 
   cargando = true;
 
-  constructor(public router: Router, public _ps: ProyectoService, public _cs: CalendarioService) { }
+  constructor(public router: Router, public _ps: ProyectoService, public _cs: CalendarioService,
+              public _gs: GenericoService) {
+                this._gs.nombre_pagina = 'Administración de proyectos';
+              }
 
   ngOnInit() {
     this.traer_datos();

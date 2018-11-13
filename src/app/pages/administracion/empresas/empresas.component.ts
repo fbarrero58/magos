@@ -7,6 +7,7 @@ import { ADMIN_EMPRESAS } from '../../../constantes/tablas';
 // Servicios
 import { EmpresaService } from '../../../services/empresa/empresa.service';
 import { Empresa } from '../../../classes/empresa';
+import { GenericoService } from '../../../services/generico.service';
 
 declare var $: any;
 
@@ -19,7 +20,9 @@ export class EmpresasComponent implements OnInit {
 
   cargando = true;
 
-  constructor(public router: Router, public _es: EmpresaService) { }
+  constructor(public router: Router, public _es: EmpresaService, public _gs: GenericoService) {
+    this._gs.nombre_pagina = 'Administración de Empresas';
+  }
 
   ngOnInit() {
     this.traer_datos();
