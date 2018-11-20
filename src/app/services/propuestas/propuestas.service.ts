@@ -49,4 +49,34 @@ export class PropuestasService {
     return this.http.delete(url);
   }
 
+  insertar_seguimiento_consultoria(seguimiento) {
+    const url = `${URL_SERVICIOS}propuestas/consultoria/${this.condicion_seleccionada.id}/?token=${localStorage.getItem('token')}`;
+    return this.http.post(url, seguimiento);
+  }
+
+  insertar_seguimiento_comercial(seguimiento) {
+    const url = `${URL_SERVICIOS}propuestas/comercial/${this.condicion_seleccionada.id}/?token=${localStorage.getItem('token')}`;
+    return this.http.post(url, seguimiento);
+  }
+
+  trar_consultoria() {
+    const url = `${URL_SERVICIOS}propuestas/consultoria/${this.condicion_seleccionada.id}/?token=${localStorage.getItem('token')}`;
+    return this.http.get(url);
+  }
+
+  trar_comercial() {
+    const url = `${URL_SERVICIOS}propuestas/comercial/${this.condicion_seleccionada.id}/?token=${localStorage.getItem('token')}`;
+    return this.http.get(url);
+  }
+
+  actualizar_consultoria(seguimiento) {
+    const url = `${URL_SERVICIOS}propuestas/consultoria/${seguimiento.id}/?token=${localStorage.getItem('token')}`;
+    return this.http.put(url, seguimiento);
+  }
+
+  actualizar_comercial(seguimiento) {
+    const url = `${URL_SERVICIOS}propuestas/comercial/${seguimiento.id}/?token=${localStorage.getItem('token')}`;
+    return this.http.put(url, seguimiento);
+  }
+
 }

@@ -46,6 +46,7 @@ const pagesRoutes: Routes = [
             {path: 'propuestas', canActivate: [ AdminGuard ], component: PropuestasComponent},
             {path: 'propuestas/condiciones', canActivate: [ AdminGuard ], component: CondicionesComponent},
             {path: 'propuestas/condiciones/consultoria', canActivate: [ AdminGuard ], component: SegConsultoriaComponent},
+            {path: 'propuestas/condiciones/comercial', canActivate: [ AdminGuard ], component: SegConsultoriaComponent},
             {path: 'propuestas/condiciones/:tipo', canActivate: [ AdminGuard ], component: FormCondicionesComponent},
             {path: 'propuestas/:tipo', canActivate: [ AdminGuard ], component: FormPropuestasComponent},
             // Gestión Documental

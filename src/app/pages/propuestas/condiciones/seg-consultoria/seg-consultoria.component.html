@@ -1,3 +1,66 @@
-<p>
-  seg-consultoria works!
-</p>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary card-header-text">
+                <div class="card-text">
+                    <h4 class="card-title">Seguimiento de consultoria</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <form (ngSubmit)="onSubmit()" #empresasForm="ngForm">
+                    <div class="row">
+                        <label class="col-sm-1 col-form-label">Fecha</label>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input id="fecha" type="text" [(ngModel)]="seguimiento.fecha" name="fecha" class="form-control datepicker">
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label">Comentarios</label>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="seguimiento.comentarios" name="comentario" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row text-right" style="margin-left:30px; margin-bottom: 10px;">
+                        <button type="button" (click)="router.navigate(['/propuestas/condiciones/editar'])" class="btn btn-primary" style="color:white; margin-right:15px">Volver</button>
+                        <button [disabled]="!empresasForm.form.valid || cargando" class="btn btn-primary">
+                              <i [hidden]="!cargando" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                          Guardar
+                        </button>
+                        <button [hidden]="modo === 'nuevo'" (click)="cancelar_edicion()" type="button" class="btn btn-warning" style="color:white; margin-left:15px">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let segui of seguimientos">
+                        <td> {{ segui.fecha_mostrar }}</td>
+                        <td> {{ segui.comentarios }} </td>
+                        <td class="td-actions">
+                            <button (click)="seleccionar_seguimiento(segui)" type="button" rel="tooltip" class="btn btn-warning">
+                                <i class="material-icons">edit</i>
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
