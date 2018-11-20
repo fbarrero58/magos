@@ -1,4 +1,5 @@
-export const URL_SERVICIOS = 'http://localhost/des_backend/backend_def/index.php/';
+export const URL_SERVICIOS = 'https://magosvmca.com/magos/backend_def/index.php/';
+// export const URL_SERVICIOS = 'http://localhost/des_backend/backend_def/index.php/';
 export const URL_IMAGENES = '../assets/img/faces/';
 export const PATH_HERRAMIENTAS = 'http://localhost/herramientas/';
 

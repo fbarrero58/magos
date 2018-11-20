@@ -91,11 +91,11 @@
                 </div>
                 <div class="card-footer">
                     <button type="button" (click)="router.navigate(['/admin/solicitudes'])" class="btn btn-primary mr-auto" style="margin-right:15px">Volver</button>
-                    <button *ngIf="this.solicitud.estado === 'En espera'" (click)="rechazar()" type="button" class="btn btn-danger" [disabled]="cargando">
+                    <button *ngIf="this.solicitud.estado === 'En espera' && nombre_aprobador === solicitud.nombre_aprobador" (click)="rechazar()" type="button" class="btn btn-danger" [disabled]="cargando">
                         <i [hidden]="!cargando" class="fa fa-spinner fa-pulse fa-3x fa-fw cargando"></i>
                         Rechazar
                     </button>
-                    <button *ngIf="this.solicitud.estado === 'En espera'" (click)="aprobar()" type="button" class="btn btn-success" [disabled]="cargando">
+                    <button *ngIf="this.solicitud.estado === 'En espera' && nombre_aprobador === solicitud.nombre_aprobador" (click)="aprobar()" type="button" class="btn btn-success" [disabled]="cargando">
                         <i [hidden]="!cargando" class="fa fa-spinner fa-pulse fa-3x fa-fw cargando"></i>
                         Aprobar
                     </button>

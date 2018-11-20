@@ -70,6 +70,7 @@ export class FormCategoriasComponent implements OnInit {
         showConfirmButton: true
       });
       this.cargando = false;
+      this.volver();
   }
 
   volver() {

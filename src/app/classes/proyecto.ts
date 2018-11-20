@@ -14,7 +14,6 @@ export class Proyecto {
     alianza: string;
     habilitado: string;
     ticket: string;
-    horas: number;
     facturable: string;
     nombre_empresa: string;
 

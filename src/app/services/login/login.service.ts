@@ -50,4 +50,9 @@ export class LoginService {
     return true;
   }
 
+  reiniciar_pass (login: Login) {
+    const url = URL_SERVICIOS + 'login/' + localStorage.getItem('id_usuario');
+    return this.http.put(url, login);
+  }
+
 }

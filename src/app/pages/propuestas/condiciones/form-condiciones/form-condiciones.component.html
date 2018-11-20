@@ -1,11 +1,24 @@
 <app-cargando [mostrar]="cargando"></app-cargando>
 
+<div class="row" *ngIf="tipo === 'editar'">
+    <div class="ml-auto">
+        <div class="col-md-12">
+            <!-- <button (click)="router.navigate(['/propuestas/condiciones'])" class="btn btn-primary">
+                Seguimiento Comercial
+            </button> -->
+            <button (click)="router.navigate(['/propuestas/condiciones/consultoria'])" class="btn btn-primary">
+                Seguimiento Consultoría
+            </button>
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-md-12 col-sm-12">
         <div class="card ">
             <div class="card-header card-header-primary card-header-text">
                 <div class="card-text">
-                    <h4 class="card-title">Formulario de Propuestas</h4>
+                    <h4 class="card-title">Formulario de Condiciones</h4>
                 </div>
             </div>
             <form (ngSubmit)="onSubmit(empresasForm)" #empresasForm="ngForm">

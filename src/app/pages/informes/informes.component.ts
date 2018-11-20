@@ -38,6 +38,10 @@ export class InformesComponent implements OnInit {
   // Solicitudes
   tipos_solicitud: Vmca[] = [];
 
+  // Propuestas
+  estados_facturacion: Vmca[] = [];
+  estados_pago: Vmca[] = [];
+
   constructor(public http: HttpClient, public _ps: ProyectoService, public _us: UsuarioService,
               public _cs: CalendarioService, public _es: EmpresaService, public _vs: VmcaService,
               public _ss: SolicitudesService, public _gs: GenericoService) {
@@ -50,6 +54,7 @@ export class InformesComponent implements OnInit {
     this.traer_datos_horas();
     this.traer_datos_proyectos();
     this.traer_datos_solicitudes();
+    this.traer_datos_propuestas();
   }
 
   traer_datos_horas() {
@@ -75,6 +80,20 @@ export class InformesComponent implements OnInit {
 
   traer_datos_solicitudes() {
     this.tipos_solicitud = this._vs.tipos_solicitudes;
+  }
+
+  traer_datos_propuestas() {
+    this._vs.traer_estados_facturacion().subscribe((resp: any) => {
+      const aux: Vmca = {id: '0', nombre: 'Todos'};
+      resp.estados.unshift(aux);
+      this.estados_facturacion = resp.estados;
+    });
+
+    this._vs.traer_estados_pago().subscribe((resp: any) => {
+      const aux: Vmca = {id: '0', nombre: 'Todos'};
+      resp.estados.unshift(aux);
+      this.estados_pago = resp.estados;
+    });
   }
 
   reiniciar_url(path) {
@@ -104,6 +123,19 @@ export class InformesComponent implements OnInit {
 
   onSubmitSolicitudes() {
     this.reiniciar_url('informe_solicitudes');
+    const tipo = $('#solicitud_tipo').val();
+
+    this.url = `${this.url}?tipo_solicitud=${tipo}`;
+    window.open(this.url, '_blank');
+  }
+
+  onSubmitPropuestas() {
+    this.reiniciar_url('informe_propuestas');
+    const facturacion = $('#facturacion_propuestas').val();
+    const pagos = $('#pagos_propuestas');
+
+    this.url = `${this.url}`;
+    window.open(this.url, '_blank');
   }
 
 }

@@ -85,7 +85,6 @@ export class FormPropuestasComponent implements OnInit {
         this.respuesta_servicio(resp);
       });
     } else {
-      console.log('Actualizar');
       this._prs.actualizar_propuesta(this.propuesta).subscribe(resp => {
         this.respuesta_servicio(resp);
       });
@@ -101,6 +100,7 @@ export class FormPropuestasComponent implements OnInit {
         showConfirmButton: true
       });
       this.cargando = false;
+      this.router.navigate(['/propuestas']);
   }
 
   eliminar() {

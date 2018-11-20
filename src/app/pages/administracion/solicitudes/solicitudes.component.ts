@@ -36,7 +36,7 @@ export class SolicitudesComponent implements OnInit {
 
   ngOnInit() {
 
-    this._ss.traer_solicitudes(localStorage.getItem('id_usuario')).subscribe((resp: any) => {
+    this._ss.traer_solicitudes().subscribe((resp: any) => {
       this.permisos = resp.permisos;
       this.vacaciones = resp.vacaciones;
       this.otros = resp.otros;

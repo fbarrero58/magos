@@ -16,18 +16,22 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input *ngIf="tipo_formulario === 'editar'" type="text" [(ngModel)]="solicitud.tipo_solicitud" name="tipo_seleccionado_nombre" class="form-control" disabled>
-                                <select *ngIf="tipo_formulario === 'nuevo'" style="width:100%" [(ngModel)]="solicitud.tipo_solicitud" name="tipo_solicitud" id="form_tipo_solicitud">
-                                    <option *ngFor="let tipo of _vs.tipos_solicitudes" [value]="tipo.id">{{ tipo.nombre }}</option>
-                                </select>
+                                <div [hidden]="tipo_formulario === 'editar'">
+                                    <select style="width:100%" [(ngModel)]="solicitud.tipo_solicitud" name="tipo_solicitud" id="form_tipo_solicitud">
+                                        <option *ngFor="let tipo of _vs.tipos_solicitudes" [value]="tipo.id">{{ tipo.nombre }}</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <label [hidden]="tipo_seleccionado === ''" class="col-sm-2 col-form-label"> Aprobador </label>
                         <div class="col-sm-4" [hidden]="tipo_seleccionado === ''">
                             <div class="form-group">
                                 <input *ngIf="tipo_formulario === 'editar'" type="text" [(ngModel)]="solicitud.nombre_aprobador" name="nombre_aprobador" class="form-control" disabled>
-                                <select *ngIf="tipo_formulario === 'nuevo'" style="width:100%" [(ngModel)]="solicitud.aprobador" name="aprobador" id="form_tipo_aprobador">
-                                    <option *ngFor="let aprobador of aprobadores" [value]="aprobador.id">{{ aprobador.nombre }}</option>
-                                </select>
+                                <div [hidden]="tipo_formulario === 'editar'">
+                                    <select style="width:100%" [(ngModel)]="solicitud.aprobador" name="aprobador" id="form_tipo_aprobador">
+                                        <option *ngFor="let aprobador of aprobadores" [value]="aprobador.id">{{ aprobador.nombre }}</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>

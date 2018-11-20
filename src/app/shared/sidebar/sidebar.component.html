@@ -18,7 +18,7 @@
             </div>
         </div>
         <ul class="nav">
-            <li *ngIf="_ls.rol_usuario === '1' || _ls.rol_usuario === '4'" class="nav-item">
+            <li *ngIf="_ls.rol_usuario !== '3'" class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#colapse_administracion">
                     <i class="material-icons">image</i>
                     <p> Administración
@@ -27,19 +27,19 @@
                 </a>
                 <div class="collapse" id="colapse_administracion">
                     <ul class="nav">
-                        <li class="nav-item" id="item_admin_alianzas">
+                        <li *ngIf="_ls.rol_usuario === '1' || _ls.rol_usuario === '4'" class="nav-item" id="item_admin_alianzas">
                             <a routerLink="/admin/alianzas" routerLinkActive="sidebar-activo" class="nav-link">
                                 <span class="sidebar-mini"> A </span>
                                 <span class="sidebar-normal"> Alianzas </span>
                             </a>
                         </li>
-                        <li class="nav-item" id="item_admin_clientes">
+                        <li *ngIf="_ls.rol_usuario === '1' || _ls.rol_usuario === '4'" class="nav-item" id="item_admin_clientes">
                             <a routerLink="/admin/empresas" routerLinkActive="sidebar-activo" class="nav-link">
                                 <span class="sidebar-mini"> E </span>
                                 <span class="sidebar-normal"> Empresas </span>
                             </a>
                         </li>
-                        <li class="nav-item" id="item_admin_proyectos">
+                        <li *ngIf="_ls.rol_usuario === '1' || _ls.rol_usuario === '4'" class="nav-item" id="item_admin_proyectos">
                             <a routerLink="/admin/proyectos" routerLinkActive="sidebar-activo" class="nav-link">
                                 <span class="sidebar-mini"> P </span>
                                 <span class="sidebar-normal"> Proyectos </span>
@@ -51,7 +51,7 @@
                                 <span class="sidebar-normal"> Solicitudes </span>
                             </a>
                         </li>
-                        <li class="nav-item" id="item_admin_usuarios">
+                        <li *ngIf="_ls.rol_usuario === '1' || _ls.rol_usuario === '4'" class="nav-item" id="item_admin_usuarios">
                             <a routerLink="/admin/usuarios" routerLinkActive="sidebar-activo" class="nav-link">
                                 <span class="sidebar-mini"> U </span>
                                 <span class="sidebar-normal"> Usuarios </span>
@@ -120,7 +120,7 @@
                     <p> Propuestas </p>
                 </a>
             </li>
-            <li class="nav-item" id="item_informes">
+            <li *ngIf="_ls.rol_usuario === '1' || _ls.rol_usuario === '4'" class="nav-item" id="item_informes">
                 <a routerLink="/informes" routerLinkActive="sidebar-activo" class="nav-link">
                     <i class="material-icons">insert_chart</i>
                     <p> Informes </p>

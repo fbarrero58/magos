@@ -61,6 +61,7 @@ export class FormGestionComponent implements OnInit {
         showConfirmButton: true
       });
       this.cargando = false;
+      this.router.navigate(['/gestion-documental']);
   }
 
 }

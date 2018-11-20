@@ -61,7 +61,7 @@ export class RegistroHorasComponent implements OnInit {
       $('#proyecto_form').on('change', (e) => {
         this.cargando = true;
         const proyecto = this.buscar_proyecto(e.target.value);
-        this.registro.servicio = proyecto.linea;
+        this.registro.servicio = proyecto.tipo;
         this._vs.traer_actividades(proyecto.tipo).subscribe((resp: any) => {
           this.actividades = resp.actividades;
           this.cargando = false;
@@ -191,6 +191,7 @@ export class RegistroHorasComponent implements OnInit {
       });
     } else {
       this._hs.actualizar_registro(this.registro.id, this.registro).subscribe(resp => {
+        console.log(resp);
         this.respuesta_servicio(resp);
       });
     }

@@ -75,6 +75,7 @@ export class FormDocumentosComponent implements OnInit {
         showConfirmButton: true
       });
       this.cargando = false;
+      this.volver();
   }
 
 }

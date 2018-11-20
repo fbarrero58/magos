@@ -136,10 +136,6 @@ export class FormProyectosComponent implements OnInit {
 
     this.cargando = true;
 
-    if (!this.proyecto.horas) {
-      this.proyecto.horas = 0;
-    }
-
     this.proyecto.empresa = $('#form_cliente').val();
     this.proyecto.estado = $('#form_estado').val();
     this.proyecto.fin = $('#form_fin').val();

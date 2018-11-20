@@ -1,5 +1,7 @@
 <app-cargando [mostrar]="cargando"></app-cargando>
 
+<h3>No se está verificando la duplicidad de los códigos</h3>
+
 <div class="row" [ngClass]="{'animated fadeIn': !cargando, 'ocultar': cargando}">
     <div class="col-md-12 col-sm-12 text-right">
         <button (click)="router.navigate(['admin/empresas/form/nuevo'])" class="btn btn-primary">Nueva Empresa</button>

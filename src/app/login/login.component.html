@@ -4,7 +4,7 @@
         <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
         <div class="container">
             <div class="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
-                <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+                <form [hidden]="reiniciar_clave" (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
                     <div class="card card-login card-hidden">
                         <div class="card-header card-header-primary text-center">
                             <h4 class="card-title">Login</h4>
@@ -45,6 +45,55 @@
     </div>
 </div>
 </form>
+
+<!-- Reiniciar Contrasena -->
+<form [hidden]="!reiniciar_clave" (ngSubmit)="submitPassword()" #resetForm="ngForm">
+    <div class="card card-login card-hidden">
+        <div class="card-header card-header-primary text-center">
+            <h4 class="card-title">Asignar nueva Contraseña</h4>
+        </div>
+        <div class="card-body ">
+            <span class="bmd-form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="material-icons">face</i>
+                        </span>
+        </div>
+        <input type="text" class="form-control" placeholder="Usuario" [(ngModel)]="myLogin.username" name="username" disabled>
+    </div>
+    </span>
+    <span class="bmd-form-group"></span>
+    <span class="bmd-form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="material-icons">lock_outline</i>
+                        </span>
+    </div>
+    <input type="password" class="form-control" placeholder="Nueva Contraseña" required [(ngModel)]="myLogin.nueva_pass" name="new_password">
+    </div>
+    </span>
+    <span class="bmd-form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="material-icons">lock_outline</i>
+                        </span>
+    </div>
+    <input type="password" class="form-control" placeholder="Confirmar Contraseña" required [(ngModel)]="myLogin.confirm_pass" name="confirm_password">
+    </div>
+    </span>
+    </div>
+    <div class="card-footer justify-content-center">
+        <button type="submit" class="btn btn-primary btn-link btn-lg" [disabled]="!resetForm.form.valid || submitted">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw cargando" [hidden]="!submitted"></i>Iniciar Sesión
+            </button>
+    </div>
+    </div>
+</form>
+
+
 </div>
 </div>
 </div>

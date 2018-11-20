@@ -126,6 +126,36 @@
                     </div>
                 </form>
             </div>
+            <!-- Informe Propuestas -->
+            <div class="tab-pane" id="propuestas">
+                <h3 class="card-header" style="margin-top: 0; padding-top: 0">Reporte de Propuestas</h3>
+                <form (ngSubmit)="onSubmitPropuestas()" #propuestasForm="ngForm">
+                    <!-- <div class="row" style="margin-top: 5px">
+                        <label class="col-sm-2 col-form-label"> Estado de facturación </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select style="width:100%" name="facturacion_propuesta" id="facturacion_propuestas">
+                                <option *ngFor="let tipo of estados_facturacion" [value]="tipo.id">{{ tipo.nombre }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label"> Estado de pago </label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select style="width:100%" name="pago_propuesta" id="pagos_propuestas">
+                                <option *ngFor="let tipo of estados_pago" [value]="tipo.id">{{ tipo.nombre }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="text-center" style="margin-top: 10px;">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="material-icons">cloud_download</i> Descargar
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

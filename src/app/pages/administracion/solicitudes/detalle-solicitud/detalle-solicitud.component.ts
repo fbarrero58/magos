@@ -20,6 +20,8 @@ export class DetalleSolicitudComponent implements OnInit {
   cargando = false;
   solicitud: Solicitud = new Solicitud();
   tipo_seleccionado = '';
+  id_usuario = localStorage.getItem('id_usuario');
+  nombre_aprobador: string;
 
   constructor( public router: Router, public ar: ActivatedRoute, public _cs: CalendarioService,
                 public _ss: SolicitudesService, public _gs: GenericoService ) {
@@ -35,6 +37,7 @@ export class DetalleSolicitudComponent implements OnInit {
     this.solicitud.tipo_solicitud = ref_url.get('tipo_solicitud');
     this.solicitud.id = ref_url.get('id');
     this.solicitud.estado = ref_url.get('estado');
+    this.solicitud.aprobador = ref_url.get('id_usuario_aprobador');
     switch (this.solicitud.tipo_solicitud) {
       case 'Permiso':
         this.tipo_seleccionado = 'permiso';
@@ -59,6 +62,8 @@ export class DetalleSolicitudComponent implements OnInit {
       default:
         break;
     }
+    const usuario_temp: any = JSON.parse(localStorage.getItem('usuario'));
+    this.nombre_aprobador = `${usuario_temp.nombres} ${usuario_temp.apellidos}`;
   }
 
   onSubmit(e) {}

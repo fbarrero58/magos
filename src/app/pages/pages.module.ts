@@ -26,6 +26,7 @@ import { FormPropuestasComponent } from './propuestas/form-propuestas/form-propu
 import { CondicionesComponent } from './propuestas/condiciones/condiciones.component';
 import { FormCondicionesComponent } from './propuestas/condiciones/form-condiciones/form-condiciones.component';
 import { InformesComponent } from './informes/informes.component';
+import { SegConsultoriaComponent } from './propuestas/condiciones/seg-consultoria/seg-consultoria.component';
 
 @NgModule({
     declarations: [
@@ -44,7 +45,8 @@ import { InformesComponent } from './informes/informes.component';
         FormPropuestasComponent,
         CondicionesComponent,
         FormCondicionesComponent,
-        InformesComponent
+        InformesComponent,
+        SegConsultoriaComponent
     ],
     imports: [
         CommonModule,

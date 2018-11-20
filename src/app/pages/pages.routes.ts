@@ -30,6 +30,7 @@ import { FormCondicionesComponent } from './propuestas/condiciones/form-condicio
 import { AdminGuard } from '../services/guards/admin.guard';
 import { GerenteGuard } from '../services/guards/gerente.guard';
 import { InformesComponent } from './informes/informes.component';
+import { SegConsultoriaComponent } from './propuestas/condiciones/seg-consultoria/seg-consultoria.component';
 
 const pagesRoutes: Routes = [
     {
@@ -44,6 +45,7 @@ const pagesRoutes: Routes = [
             {path: 'solicitudes/:tipo', component: FormSolicitudesComponent},
             {path: 'propuestas', canActivate: [ AdminGuard ], component: PropuestasComponent},
             {path: 'propuestas/condiciones', canActivate: [ AdminGuard ], component: CondicionesComponent},
+            {path: 'propuestas/condiciones/consultoria', canActivate: [ AdminGuard ], component: SegConsultoriaComponent},
             {path: 'propuestas/condiciones/:tipo', canActivate: [ AdminGuard ], component: FormCondicionesComponent},
             {path: 'propuestas/:tipo', canActivate: [ AdminGuard ], component: FormPropuestasComponent},
             // Gestión Documental

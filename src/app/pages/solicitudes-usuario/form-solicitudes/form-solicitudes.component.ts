@@ -31,13 +31,14 @@ export class FormSolicitudesComponent implements OnInit {
           this.tipo_formulario = resp['tipo'];
           if (this.tipo_formulario === 'editar' && !this._ss.solicitud_seleccionada) {
             this.router.navigate(['/solicitudes']);
-          } else {
+          } else if (this.tipo_formulario === 'editar') {
             this.tipo_seleccionado = this._ss.solicitud_seleccionada.tipo_solicitud.toLowerCase();
             this.solicitud = this._ss.solicitud_seleccionada;
             if (this.tipo_seleccionado === 'permiso') {
               this.solicitud.horas_permiso = this.solicitud.horas;
             }
           }
+          $('select').select2();
         });
 
     this._gs.nombre_pagina = 'Formulario de Solicitudes';

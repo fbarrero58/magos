@@ -11,7 +11,7 @@ export class AdminGuard implements CanActivate {
 
   canActivate() {
 
-    if ( this._ls.rol_usuario === '2' ||  this._ls.rol_usuario === '3') {
+    if ( this._ls.rol_usuario === '3') {
       this.router.navigate(['/main']);
     }
 

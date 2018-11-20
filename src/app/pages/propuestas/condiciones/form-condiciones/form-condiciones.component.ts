@@ -129,7 +129,7 @@ export class FormCondicionesComponent implements OnInit {
     }
   }
 
-  respuesta_servicio(resp, regresar = false) {
+  respuesta_servicio(resp) {
     let tipo = 'success';
       if (resp.err) {tipo = 'error'; }
       swal({
@@ -138,14 +138,12 @@ export class FormCondicionesComponent implements OnInit {
         showConfirmButton: true
       });
       this.cargando = false;
-      if (regresar) {
-        this.router.navigate(['/propuestas/condiciones']);
-      }
+      this.router.navigate(['/propuestas/condiciones']);
   }
 
   eliminar() {
     this._ps.eliminar_condicion().subscribe(resp => {
-      this.respuesta_servicio(resp, true);
+      this.respuesta_servicio(resp);
     });
   }
 
