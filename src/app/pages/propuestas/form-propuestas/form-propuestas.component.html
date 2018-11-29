@@ -80,7 +80,6 @@
                     <hr>
                     <div class="row text-right" style="margin-left:30px; margin-bottom: 10px;">
                         <button type="button" (click)="router.navigate(['/propuestas'])" class="btn btn-primary" style="color:white; margin-right:15px">Volver</button>
-                        <button *ngIf="tipo === 'editar'" type="button" (click)="eliminar()" class="btn btn-danger" style="margin-right:15px">Eliminar</button>
                         <button [disabled]="!empresasForm.form.valid || cargando" class="btn btn-primary">
                               <i [hidden]="!cargando" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
                           Guardar

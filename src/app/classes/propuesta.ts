@@ -12,4 +12,5 @@ export class Propuesta {
     tipo_moneda: string;
     valor_total: string;
     detalles_adicionales: string;
+    estado: string;
 }

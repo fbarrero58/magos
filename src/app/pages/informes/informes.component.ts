@@ -15,6 +15,7 @@ import { ProyectoService } from 'src/app/services/proyecto/proyecto.service';
 import { UsuarioService } from '../../services/usuario.service';
 import { SolicitudesService } from 'src/app/services/solicitudes/solicitudes.service';
 import { GenericoService } from 'src/app/services/generico.service';
+import { Proyecto } from 'src/app/classes/proyecto';
 
 declare var $, md: any;
 
@@ -27,7 +28,7 @@ export class InformesComponent implements OnInit {
 
   url: string;
   // Horas
-  proyectos: Vmca[] = [];
+  proyectos: Proyecto[] = [];
   consultores: Usuario[] = [];
 
   // Proyectos
@@ -41,6 +42,7 @@ export class InformesComponent implements OnInit {
   // Propuestas
   estados_facturacion: Vmca[] = [];
   estados_pago: Vmca[] = [];
+  modo_descarga = 'nada';
 
   constructor(public http: HttpClient, public _ps: ProyectoService, public _us: UsuarioService,
               public _cs: CalendarioService, public _es: EmpresaService, public _vs: VmcaService,
@@ -55,6 +57,11 @@ export class InformesComponent implements OnInit {
     this.traer_datos_proyectos();
     this.traer_datos_solicitudes();
     this.traer_datos_propuestas();
+
+    $('#busqueda_propuesta').on('change', () => {
+      this.modo_descarga = $('#busqueda_propuesta').val();
+    });
+
   }
 
   traer_datos_horas() {
@@ -131,10 +138,16 @@ export class InformesComponent implements OnInit {
 
   onSubmitPropuestas() {
     this.reiniciar_url('informe_propuestas');
-    const facturacion = $('#facturacion_propuestas').val();
-    const pagos = $('#pagos_propuestas');
+    if (this.modo_descarga === 'proyecto') {
+      const proyectos = $('#propuestas_proyectos').val();
+      this.url = `${this.url}?proyectos=${proyectos}`;
+    } else if (this.modo_descarga === 'cliente') {
+      const clientes = $('#propuestas_clientes').val();
+      this.url = `${this.url}?clientes=${clientes}`;
+    } else {
+      this.url = `${this.url}`;
+    }
 
-    this.url = `${this.url}`;
     window.open(this.url, '_blank');
   }
 

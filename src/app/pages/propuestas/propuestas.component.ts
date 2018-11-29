@@ -12,7 +12,7 @@ import { GenericoService } from 'src/app/services/generico.service';
 })
 export class PropuestasComponent implements OnInit {
 
-  cargando = false;
+  cargando = true;
   titulo = 'Propuestas registradas';
   columnas = [
     { title: 'Nombre' },
@@ -49,13 +49,16 @@ export class PropuestasComponent implements OnInit {
       e.fecha_vendida_app = this._cs.format_to_nice(e.fecha_vendida);
       aux_datos.push(e.nombre);
       aux_datos.push(e.fecha_entrega_app);
-      aux_datos.push('POR DEFINIR');
+      aux_datos.push(e.estado);
       aux_datos.push(`<button value="${contador}" class="btn btn-primary btn-sm btn-link detalles">Ver detalles</button>`);
       datos_tabla.push(aux_datos);
       aux_datos = [];
       contador ++;
     });
     this.datos = datos_tabla;
+    setTimeout(() => {
+      this.cargando = false;
+    }, 1000);
   }
 
   recibir_redireccion($evento) {

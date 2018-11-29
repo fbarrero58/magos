@@ -72,7 +72,7 @@
                         <label class="col-sm-2 col-form-label"> Clientes </label>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <select style="width:100%" name="clientes[]" multiple="multiple">
+                                <select style="width:100%" name="clientes[]" multiple="multiple" id="proyectos_clientes">
                                 <option *ngFor="let cliente of clientes" [value]="cliente.id">{{ cliente.nombre }}</option>
                             </select>
                             </div>
@@ -80,7 +80,7 @@
                         <label class="col-sm-2 col-form-label"> Servicios </label>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <select style="width:100%" name="servicios[]" multiple="multiple">
+                                <select style="width:100%" name="servicios[]" multiple="multiple" id="proyectos_servicios">
                                 <option *ngFor="let servicio of servicios" [value]="servicio.id">{{servicio.nombre}}</option>
                             </select>
                             </div>
@@ -90,7 +90,7 @@
                         <label class="col-sm-2 col-form-label"> Estado </label>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <select style="width:100%" name="estados[]" multiple="multiple">
+                                <select style="width:100%" name="estados[]" multiple="multiple" id="proyectos_estados">
                                 <option *ngFor="let estado of estados" [value]="estado.id">{{estado.nombre}}</option>
                             </select>
                             </div>
@@ -130,25 +130,36 @@
             <div class="tab-pane" id="propuestas">
                 <h3 class="card-header" style="margin-top: 0; padding-top: 0">Reporte de Propuestas</h3>
                 <form (ngSubmit)="onSubmitPropuestas()" #propuestasForm="ngForm">
-                    <!-- <div class="row" style="margin-top: 5px">
-                        <label class="col-sm-2 col-form-label"> Estado de facturación </label>
+                    <div class="row" style="margin-top: 5px">
+                        <label class="col-sm-2 col-form-label"> Buscar por </label>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <select style="width:100%" name="facturacion_propuesta" id="facturacion_propuestas">
-                                <option *ngFor="let tipo of estados_facturacion" [value]="tipo.id">{{ tipo.nombre }}</option>
+                                <select style="width:100%" name="busqueda_propuesta" id="busqueda_propuesta">
+                                    <option value="nada" selected>Sin siltro</option>
+                                    <option value="proyecto">Proyecto</option>
+                                    <option value="cliente">Cliente</option>
                                 </select>
                             </div>
                         </div>
-                        <label class="col-sm-2 col-form-label"> Estado de pago </label>
-                        <div class="col-sm-4">
+                    </div>
+                    <div class="row" style="margin-top: 5px;">
+                        <label [hidden]="modo_descarga !== 'proyecto'" class="col-sm-2 col-form-label"> Proyectos </label>
+                        <div [hidden]="modo_descarga !== 'proyecto'" class="col-sm-4">
                             <div class="form-group">
-                                <select style="width:100%" name="pago_propuesta" id="pagos_propuestas">
-                                <option *ngFor="let tipo of estados_pago" [value]="tipo.id">{{ tipo.nombre }}</option>
-                                </select>
+                                <select style="width:100%" name="proyectos[]" multiple="multiple" id="propuestas_proyectos">
+                                <option *ngFor="let proyecto of proyectos" [value]="proyecto.id"> {{ proyecto.codigo }} - {{ proyecto.nombre }}</option>
+                            </select>
                             </div>
                         </div>
-                    </div> -->
-
+                        <label [hidden]="modo_descarga !== 'cliente'" class="col-sm-2 col-form-label"> Clientes </label>
+                        <div [hidden]="modo_descarga !== 'cliente'" class="col-sm-4">
+                            <div class="form-group">
+                                <select style="width:100%" name="clientes[]" multiple="multiple" id="propuestas_clientes">
+                                <option *ngFor="let cliente of clientes" [value]="cliente.id">{{ cliente.nombre }}</option>
+                            </select>
+                            </div>
+                        </div>
+                    </div>
                     <div class="text-center" style="margin-top: 10px;">
                         <button type="submit" class="btn btn-primary">
                             <i class="material-icons">cloud_download</i> Descargar

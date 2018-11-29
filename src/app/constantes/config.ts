@@ -1,7 +1,12 @@
-// export const URL_SERVICIOS = 'https://magosvmca.com/magos/backend_def/index.php/';
-export const URL_SERVICIOS = 'http://localhost/des_backend/backend_def/index.php/';
-export const URL_IMAGENES = '../assets/img/faces/';
-export const PATH_HERRAMIENTAS = 'http://localhost/herramientas/';
+// // Paths para productivo
+export const URL_SERVICIOS = 'https://magosvmca.com/magos/backend_def/index.php/';
+export const URL_IMAGENES = 'assets/img/faces/';
+export const PATH_HERRAMIENTAS = 'https://magosvmca.com/magos/herramientas/';
+
+// Paths para TEST
+// export const URL_SERVICIOS = 'http://localhost/des_backend/backend_def/index.php/';
+// export const URL_IMAGENES = '../assets/img/faces/';
+// export const PATH_HERRAMIENTAS = 'http://localhost/herramientas/';
 
 export const MESES = {
     '01': 'Enero',

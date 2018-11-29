@@ -15,7 +15,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.nombre = this._ls.usuario.nombres;
-    this.foto = `../assets/img/faces/${this._ls.usuario.foto}`;
+    this.foto = `assets/img/faces/${this._ls.usuario.foto}`;
   }
 
 }
